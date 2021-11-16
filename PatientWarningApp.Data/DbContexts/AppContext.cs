@@ -14,7 +14,6 @@ namespace PatientWarningApp.Data.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Use Fluent API to configure  
 
             // Map entities to tables  
             modelBuilder.Entity<PractitionerAccount>().ToTable("PractitionerAccounts");
