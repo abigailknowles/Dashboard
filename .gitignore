@@ -1,1 +1,8 @@
 
+PatientWarningApp.Data/bin
+PatientWarningApp.Data/obj
+PatientWarningApp.Services/bin
+PatientWarningApp.Services/obj
+PatientWarningApp.Tests/bin
+PatientWarningApp.Tests/obj
+.vs

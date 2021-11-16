@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientWarningApp.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientWarningApp.Data", "PatientWarningApp.Data\PatientWarningApp.Data.csproj", "{95B5AC06-CF8E-461A-A7DD-3FB044AC749A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientWarningApp.Services", "PatientWarningApp.Services\PatientWarningApp.Services.csproj", "{356023E9-24B6-4840-94E4-B34A3C38EC7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PatientWarningApp.Services", "PatientWarningApp.Services\PatientWarningApp.Services.csproj", "{356023E9-24B6-4840-94E4-B34A3C38EC7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82295D7D-0710-43C8-BA2E-4BBA19584D16}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
