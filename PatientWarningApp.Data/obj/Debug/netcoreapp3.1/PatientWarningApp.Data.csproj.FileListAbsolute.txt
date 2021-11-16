@@ -1,0 +1,13 @@
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\bin\Debug\netcoreapp3.1\PatientWarningApp.Data.deps.json
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\bin\Debug\netcoreapp3.1\PatientWarningApp.Data.runtimeconfig.json
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\bin\Debug\netcoreapp3.1\PatientWarningApp.Data.runtimeconfig.dev.json
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\bin\Debug\netcoreapp3.1\PatientWarningApp.Data.dll
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\bin\Debug\netcoreapp3.1\PatientWarningApp.Data.pdb
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\obj\Debug\netcoreapp3.1\PatientWarningApp.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\obj\Debug\netcoreapp3.1\PatientWarningApp.Data.AssemblyInfoInputs.cache
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\obj\Debug\netcoreapp3.1\PatientWarningApp.Data.AssemblyInfo.cs
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\obj\Debug\netcoreapp3.1\PatientWarningApp.Data.csproj.CoreCompileInputs.cache
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\obj\Debug\netcoreapp3.1\PatientWarningApp.Data.dll
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\obj\Debug\netcoreapp3.1\PatientWarningApp.Data.pdb
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\obj\Debug\netcoreapp3.1\PatientWarningApp.Data.genruntimeconfig.cache
+C:\Users\sirkiz\source\repos\PatientWarningApp\PatientWarningApp.Data\obj\Debug\netcoreapp3.1\PatientWarningApp.Data.csproj.AssemblyReference.cache

@@ -1,0 +1,45 @@
+﻿using PatientWarningApp.Data.DbContexts;
+using PatientWarningApp.Data.Entities;
+
+namespace PatientWarningApp.Data.Repositories
+{
+    public class PatientAccountRepository : IPatientAccountRepository
+    {
+        private readonly AppDbContext _context;
+
+        public PatientAccountRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public PatientAccount Create(PatientAccount entity)
+        {
+            return _context.PatientAccounts.Add(entity).Entity;
+        }
+
+        public PatientAccount Delete(PatientAccount entity)
+        {
+            var result = _context.PatientAccounts.Remove(entity).Entity;
+            _context.SaveChanges();
+
+            return result;
+        }
+
+        public PatientAccount Read(PatientAccount entity)
+        {
+            return _context.PatientAccounts.Find(entity.Id);
+        }
+
+        public PatientAccount Update(PatientAccount entity)
+        {
+            var result = _context.PatientAccounts.Update(entity).Entity;
+            _context.SaveChanges();
+
+            return result;
+        }
+    }
+
+    public interface IPatientAccountRepository : Repository<PatientAccount>
+    {
+    }
+}
