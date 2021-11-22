@@ -2,9 +2,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PatientWarningApp.Data;
+using PatientWarningApp.Data.DbContexts;
 
 namespace PatientWarningApp.Api
 {
@@ -20,8 +23,12 @@ namespace PatientWarningApp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContextPool<AppDbContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+            services.AddDataDi();
+            services.AddServicesDi();
             services.AddControllersWithViews();
+            services.AddSwaggerGen();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -36,6 +43,11 @@ namespace PatientWarningApp.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(o => {
+                    o.SwaggerEndpoint("/swagger/v1/swagger.json","v1");
+                    o.RoutePrefix = string.Empty;
+                });
             }
             else
             {

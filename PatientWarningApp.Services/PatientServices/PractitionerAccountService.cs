@@ -43,5 +43,12 @@ namespace PatientWarningApp.Services.PatientServices
             var result = _practitionerAccountRepository.Update(entity);
             return _practitionerAccountMapper.ToModel(result);
         }
+
+        public PractitionerAccountModel ReadByUsernameAndPassword(PractitionerAccountModel model)
+        {
+            var entity = _practitionerAccountMapper.ToEntity(model);
+            var result = _practitionerAccountRepository.ReadByUsernameAndPassword(entity);
+            return _practitionerAccountMapper.ToModel(result);
+        }
     }
 }

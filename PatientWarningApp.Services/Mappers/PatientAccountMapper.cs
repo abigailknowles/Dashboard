@@ -9,6 +9,7 @@ namespace PatientWarningApp.Services.Mappers
         {
             return new PatientAccount
             {
+                Id = model.Id,
                 Email = model.Email,
                 Password = model.Password,
                 Username = model.Username
@@ -19,6 +20,7 @@ namespace PatientWarningApp.Services.Mappers
         {
             return new PatientAccountModel
             {
+                Id = entity.Id,
                 Email = entity.Email,
                 Password = entity.Password,
                 Username = entity.Username

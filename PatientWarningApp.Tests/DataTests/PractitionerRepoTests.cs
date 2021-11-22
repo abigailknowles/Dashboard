@@ -142,6 +142,30 @@ namespace PatientWarningApp.Tests.DataTests
         }
 
         [Test]
+        public void GivenAnAccountUsername_And_Password_ReadReturnsEntity()
+        {
+            //Arrange
+            var pract = new PractitionerAccount { Username = "Abbie", Password="password" };
+
+            using (_context = new AppDbContext(_options))
+            {
+                _context.PractitionerAccounts.Add(pract);
+                _context.SaveChanges();
+
+                //Act
+                _accountRepository = new PractitionerAccountRepository(_context);
+
+                var readResult = _accountRepository.ReadByUsernameAndPassword(pract);
+
+                //Assert
+                Assert.That(readResult.Username, Is.EqualTo("Abbie"));
+                Assert.That(readResult.Password, Is.EqualTo("password"));
+
+            }
+        }
+
+
+        [Test]
         public void GivenAnAccount_UpdateReturnsEntity_WithUpdatedValue()
         {
             //Arrange

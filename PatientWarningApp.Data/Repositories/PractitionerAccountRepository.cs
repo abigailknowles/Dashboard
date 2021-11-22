@@ -1,5 +1,7 @@
 ﻿using PatientWarningApp.Data.DbContexts;
 using PatientWarningApp.Data.Entities;
+using System;
+using System.Linq;
 
 namespace PatientWarningApp.Data.Repositories
 {
@@ -37,9 +39,15 @@ namespace PatientWarningApp.Data.Repositories
 
             return result;
         }
+
+        public PractitionerAccount ReadByUsernameAndPassword(PractitionerAccount entity)
+        {
+            return _context.PractitionerAccounts.FirstOrDefault(o => o.Username == entity.Username && o.Password == entity.Password);
+        }
     }
 
     public interface IPractitionerAccountRepository : Repository<PractitionerAccount>
     {
+        PractitionerAccount ReadByUsernameAndPassword(PractitionerAccount entity);
     }
 }

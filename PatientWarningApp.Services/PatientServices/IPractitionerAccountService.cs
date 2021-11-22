@@ -8,5 +8,6 @@ namespace PatientWarningApp.Services.PatientServices
         PractitionerAccountModel Delete(PractitionerAccountModel patientModel);
         PractitionerAccountModel Read(PractitionerAccountModel patientModel);
         PractitionerAccountModel Update(PractitionerAccountModel patientModel);
+        PractitionerAccountModel ReadByUsernameAndPassword(PractitionerAccountModel model);
     }
 }

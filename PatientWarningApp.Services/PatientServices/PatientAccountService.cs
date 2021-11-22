@@ -2,7 +2,7 @@
 using PatientWarningApp.Services.Mappers;
 using PatientWarningApp.Services.Models;
 
-namespace PatientWarningApp.Services
+namespace PatientWarningApp.Services.PatientServices
 {
     public class PatientAccountService : IPatientAccountService
     {
