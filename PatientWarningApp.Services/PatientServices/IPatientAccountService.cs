@@ -6,7 +6,7 @@ namespace PatientWarningApp.Services.PatientServices
     {
         PatientAccountModel Create(PatientAccountModel model);
         PatientAccountModel Delete(PatientAccountModel model);
-        PatientAccountModel Read(PatientAccountModel model);
+        PatientAccountModel Read(int id);
         PatientAccountModel Update(PatientAccountModel model);
     }
 }

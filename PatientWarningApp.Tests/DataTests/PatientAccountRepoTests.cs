@@ -68,7 +68,7 @@ namespace PatientWarningApp.Tests.DataTests
                 _patientAccountRepository = new PatientAccountRepository(context);
 
                 var result = _patientAccountRepository.Delete(PatientAccount);
-                var readResult = _patientAccountRepository.Read(PatientAccount);
+                var readResult = _patientAccountRepository.Read(PatientAccount.Id);
 
                 //Assert
                 Assert.That(result.Id, Is.EqualTo(2));
@@ -87,7 +87,7 @@ namespace PatientWarningApp.Tests.DataTests
             {
                 _patientAccountRepository = new PatientAccountRepository(context);
 
-                var readResult = _patientAccountRepository.Read(PatientAccount);
+                var readResult = _patientAccountRepository.Read(PatientAccount.Id);
 
                 //Assert
                 Assert.That(readResult.Id, Is.EqualTo(2));

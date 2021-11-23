@@ -27,9 +27,9 @@ namespace PatientWarningApp.Data.Repositories
             return result;
         }
 
-        public PractitionerAccount Read(PractitionerAccount entity)
+        public PractitionerAccount Read(int id)
         {
-            return _context.PractitionerAccounts.Find(entity.Id);
+            return _context.PractitionerAccounts.Find(id);
         }
 
         public PractitionerAccount Update(PractitionerAccount entity)

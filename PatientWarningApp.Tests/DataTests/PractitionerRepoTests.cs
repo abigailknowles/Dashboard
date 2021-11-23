@@ -85,7 +85,7 @@ namespace PatientWarningApp.Tests.DataTests
                 _accountRepository = new PractitionerAccountRepository(_context);
 
                 var result = _accountRepository.Delete(account);
-                var readResult = _accountRepository.Read(account);
+                var readResult = _accountRepository.Read(account.Id);
 
                 //Assert
                 Assert.That(result.Id, Is.EqualTo(2));
@@ -108,7 +108,7 @@ namespace PatientWarningApp.Tests.DataTests
                 var account = _context.PractitionerAccounts.Find(1);
                 _accountRepository = new PractitionerAccountRepository(_context);
 
-                var readResult = _accountRepository.Read(account);
+                var readResult = _accountRepository.Read(account.Id);
 
                 //Assert
                 Assert.That(readResult.Id, Is.EqualTo(1));
@@ -133,7 +133,7 @@ namespace PatientWarningApp.Tests.DataTests
                 var account = _context.PractitionerAccounts.Find(1);
                 _accountRepository = new PractitionerAccountRepository(_context);
 
-                var readResult = _accountRepository.Read(account);
+                var readResult = _accountRepository.Read(account.Id);
 
                 //Assert
                 Assert.That(readResult.Id, Is.EqualTo(1));
@@ -185,7 +185,7 @@ namespace PatientWarningApp.Tests.DataTests
 
                 var readResult = _accountRepository.Update(pract);
 
-                var result = _accountRepository.Read(pract);
+                var result = _accountRepository.Read(pract.Id);
                 //Assert
                 Assert.That(result.Id, Is.EqualTo(2));
                 Assert.That(result.Password, Is.EqualTo("password"));

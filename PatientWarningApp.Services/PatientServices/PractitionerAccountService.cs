@@ -30,10 +30,9 @@ namespace PatientWarningApp.Services.PatientServices
             return _practitionerAccountMapper.ToModel(result);
         }
 
-        public PractitionerAccountModel Read(PractitionerAccountModel model)
+        public PractitionerAccountModel Read(int id)
         {
-            var entity = _practitionerAccountMapper.ToEntity(model);
-            var result = _practitionerAccountRepository.Read(entity);
+            var result = _practitionerAccountRepository.Read(id);
             return _practitionerAccountMapper.ToModel(result);
         }
 

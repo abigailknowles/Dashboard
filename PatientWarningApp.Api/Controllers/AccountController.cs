@@ -12,19 +12,19 @@ namespace PaitentWarning.Web.Controllers
     {
 
         private readonly ILogger<AccountController> _logger;
-        private readonly PractitionerAccountService _service;
+        private readonly IPractitionerAccountService _service;
 
-        public AccountController(ILogger<AccountController> logger, PractitionerAccountService service)
+        public AccountController(ILogger<AccountController> logger, IPractitionerAccountService service)
         {
             _logger = logger;
             _service = service;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PractitionerAccountModel>> Get(PractitionerAccountModel account)
+        public ActionResult<IEnumerable<PractitionerAccountModel>> Get(int accountId)
         {
             
-            return Ok(_service.Read(account));
+            return Ok(_service.Read(accountId));
         }
 
         [HttpPost]

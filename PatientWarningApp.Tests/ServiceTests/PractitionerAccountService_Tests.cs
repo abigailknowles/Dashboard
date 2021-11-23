@@ -31,7 +31,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             _practitionerAccountMapper.Setup(o => o.ToModel(_practioner)).Returns(_practionerModel);
 
             _practitionerAccountRepository.Setup(o => o.Create(It.IsAny<PractitionerAccount>())).Returns(_practioner);
-            _practitionerAccountRepository.Setup(o => o.Read(It.IsAny<PractitionerAccount>())).Returns(_practioner);
+            _practitionerAccountRepository.Setup(o => o.Read(It.IsAny<int>())).Returns(_practioner);
             _practitionerAccountRepository.Setup(o => o.Update(It.IsAny<PractitionerAccount>())).Returns(_practioner);
             _practitionerAccountService = new PractitionerAccountService(_practitionerAccountRepository.Object, _practitionerAccountMapper.Object);
         }
@@ -59,12 +59,12 @@ namespace PatientWarningApp.Tests.ServiceTests
             //Arrange
             var practitionerAccountRepository = new Mock<IPractitionerAccountRepository>();
             practitionerAccountRepository.Setup(o => o.Delete(It.IsAny<PractitionerAccount>())).Returns(_practioner);
-            practitionerAccountRepository.Setup(o => o.Read(It.IsAny<PractitionerAccount>()));
+            practitionerAccountRepository.Setup(o => o.Read(It.IsAny<int>()));
             var practitionerAccountService = new PractitionerAccountService(practitionerAccountRepository.Object, _practitionerAccountMapper.Object);
 
             //Act
             var result = practitionerAccountService.Delete(_practionerModel);
-            var readResult = practitionerAccountService.Read(_practionerModel);
+            var readResult = practitionerAccountService.Read(_practionerModel.Id);
 
             //Assert
             Assert.That(result.Id, Is.EqualTo(1));
@@ -75,7 +75,7 @@ namespace PatientWarningApp.Tests.ServiceTests
         public void GivenAnPatientAccountId_ReadReturnsEntity()
         {
             //Act
-            var readResult = _practitionerAccountService.Read(_practionerModel);
+            var readResult = _practitionerAccountService.Read(_practionerModel.Id);
 
             //Assert
             Assert.That(readResult.Id, Is.EqualTo(1));

@@ -5,7 +5,7 @@ namespace PatientWarningApp.Services.Mappers
 {
     public class PractitionerAccountMapper : IPractitionerAccountMapper
     {
-        public PractitionerAccount ToEntity(PractitionerAccountModel model) => (model == null) ?  null : new PractitionerAccount
+        public PractitionerAccount ToEntity(PractitionerAccountModel model) => (model == null) ? null : new PractitionerAccount
         {
             Id = model.Id,
             Email = model.Email,

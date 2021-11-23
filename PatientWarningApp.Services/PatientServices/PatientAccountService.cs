@@ -29,10 +29,9 @@ namespace PatientWarningApp.Services.PatientServices
             return _patientAccountMapper.ToModel(result);
         }
 
-        public PatientAccountModel Read(PatientAccountModel model)
+        public PatientAccountModel Read(int id)
         {
-            var entity = _patientAccountMapper.ToEntity(model);
-            var result = _patientAccountRepository.Read(entity);
+            var result = _patientAccountRepository.Read(id);
             return _patientAccountMapper.ToModel(result);
         }
 

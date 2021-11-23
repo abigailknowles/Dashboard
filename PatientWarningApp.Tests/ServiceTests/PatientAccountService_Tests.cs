@@ -5,6 +5,7 @@ using PatientWarningApp.Data.Repositories;
 using PatientWarningApp.Services;
 using PatientWarningApp.Services.Mappers;
 using PatientWarningApp.Services.Models;
+using PatientWarningApp.Services.PatientServices;
 
 namespace PatientWarningApp.Tests.ServiceTests
 {
@@ -61,12 +62,12 @@ namespace PatientWarningApp.Tests.ServiceTests
 
             _patientAccountRepository = new Mock<IPatientAccountRepository>();
             _patientAccountRepository.Setup(o => o.Delete(It.IsAny<PatientAccount>())).Returns(_patient);
-            _patientAccountRepository.Setup(o => o.Read(It.IsAny<PatientAccount>()));
+            _patientAccountRepository.Setup(o => o.Read(It.IsAny<int>()));
             _patientAccountService = new PatientAccountService(_patientAccountRepository.Object, _patientAccountMapper.Object);
 
             //Act
             var result = _patientAccountService.Delete(_patientModel);
-            var readResult = _patientAccountService.Read(_patientModel);
+            var readResult = _patientAccountService.Read(_patientModel.Id);
 
             //Assert
             Assert.That(result.Id, Is.EqualTo(1));
@@ -81,11 +82,11 @@ namespace PatientWarningApp.Tests.ServiceTests
             var patientModel = new PatientAccountModel { Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
 
             _patientAccountRepository = new Mock<IPatientAccountRepository>();
-            _patientAccountRepository.Setup(o => o.Read(It.IsAny<PatientAccount>())).Returns(_patient);
+            _patientAccountRepository.Setup(o => o.Read(It.IsAny<int>())).Returns(_patient);
             _patientAccountService = new PatientAccountService(_patientAccountRepository.Object, _patientAccountMapper.Object);
 
             //Act
-            var readResult = _patientAccountService.Read(_patientModel);
+            var readResult = _patientAccountService.Read(_patientModel.Id);
 
             //Assert
             Assert.That(readResult.Id, Is.EqualTo(1));
