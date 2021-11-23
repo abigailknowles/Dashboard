@@ -116,6 +116,33 @@ namespace PatientWarningApp.Tests.DataTests
         }
 
         [Test]
+        public void GivenAnAccount_UpdateReturnsEntity_WithUpdatedValue()
+        {
+            //Arrange
+            var pract = new PractitionerAccount() { Id = 2, Email = "example@example.com" };
+
+            //Act
+            using (_context = new AppDbContext(_options))
+            {
+                _context.PractitionerAccounts.Add(pract);
+                _context.SaveChanges();
+
+                //Act
+                _accountRepository = new PractitionerAccountRepository(_context);
+
+
+                pract.Password = "password";
+
+                var readResult = _accountRepository.Update(pract);
+
+                var result = _accountRepository.Read(pract);
+                //Assert
+                Assert.That(result.Id, Is.EqualTo(2));
+                Assert.That(result.Password, Is.EqualTo("password"));
+            }
+        }
+
+        [Test]
         public void GivenAnAccountId_ReadReturnsEntity_WithTwoPatientAccounts()
         {
             //Arrange
@@ -133,14 +160,14 @@ namespace PatientWarningApp.Tests.DataTests
                 var account = _context.PractitionerAccounts.Find(1);
                 _accountRepository = new PractitionerAccountRepository(_context);
 
-                var readResult = _accountRepository.Read(account.Id);
+                var readResult = _accountRepository.Read(account);
 
                 //Assert
                 Assert.That(readResult.Id, Is.EqualTo(1));
                 Assert.That(readResult.PatientAccounts.Count, Is.EqualTo(2));
             }
         }
-
+        
         [Test]
         public void GivenAnAccountUsername_And_Password_ReadReturnsEntity()
         {
@@ -161,34 +188,6 @@ namespace PatientWarningApp.Tests.DataTests
                 Assert.That(readResult.Username, Is.EqualTo("Abbie"));
                 Assert.That(readResult.Password, Is.EqualTo("password"));
 
-            }
-        }
-
-
-        [Test]
-        public void GivenAnAccount_UpdateReturnsEntity_WithUpdatedValue()
-        {
-            //Arrange
-            var pract = new PractitionerAccount() { Id = 2, Email = "example@example.com" };
-
-            //Act
-            using (_context = new AppDbContext(_options))
-            {
-                _context.PractitionerAccounts.Add(pract);
-                _context.SaveChanges();
-
-                //Act
-                _accountRepository = new PractitionerAccountRepository(_context);
-
-
-                pract.Password = "password";
-
-                var readResult = _accountRepository.Update(pract);
-
-                var result = _accountRepository.Read(pract.Id);
-                //Assert
-                Assert.That(result.Id, Is.EqualTo(2));
-                Assert.That(result.Password, Is.EqualTo("password"));
             }
         }
     }

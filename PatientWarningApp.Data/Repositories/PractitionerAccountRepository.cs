@@ -40,6 +40,11 @@ namespace PatientWarningApp.Data.Repositories
             return result;
         }
 
+        public IQueryable<PractitionerAccount> ReadAll()
+        {
+            throw new System.NotImplementedException();
+        }
+        
         public PractitionerAccount ReadByUsernameAndPassword(PractitionerAccount entity)
         {
             return _context.PractitionerAccounts.FirstOrDefault(o => o.Username == entity.Username && o.Password == entity.Password);

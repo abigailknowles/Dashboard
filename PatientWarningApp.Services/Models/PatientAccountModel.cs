@@ -2,6 +2,6 @@
 {
     public class PatientAccountModel : AccountModel
     {
-
+        public int PractitionerId { get; set; }
     }
 }

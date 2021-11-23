@@ -107,10 +107,4 @@ namespace PatientWarningApp.Tests.ServiceTests
             Assert.That(readResult.Id, Is.EqualTo(1));
         }
     }
-
-    
-
-    
-
-    
 }

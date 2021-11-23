@@ -1,5 +1,6 @@
 ﻿using PatientWarningApp.Data.DbContexts;
 using PatientWarningApp.Data.Entities;
+using System.Linq;
 
 namespace PatientWarningApp.Data.Repositories
 {
@@ -37,6 +38,12 @@ namespace PatientWarningApp.Data.Repositories
 
             return result;
         }
+
+        public IQueryable<PatientAccount> ReadAll()
+        {
+            return _context.PatientAccounts.AsQueryable();
+        }
+
     }
 
     public interface IPatientAccountRepository : Repository<PatientAccount>

@@ -1,4 +1,5 @@
 ﻿using PatientWarningApp.Services.Models;
+using System.Collections.Generic;
 
 namespace PatientWarningApp.Services.PatientServices
 {
@@ -8,5 +9,6 @@ namespace PatientWarningApp.Services.PatientServices
         PatientAccountModel Delete(PatientAccountModel model);
         PatientAccountModel Read(int id);
         PatientAccountModel Update(PatientAccountModel model);
+        List<PatientAccountModel> ReadAll();
     }
 }
