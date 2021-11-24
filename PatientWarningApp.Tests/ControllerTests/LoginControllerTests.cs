@@ -3,11 +3,7 @@ using NUnit.Framework;
 using PaitentWarning.Web.Controllers;
 using Moq;
 using PatientWarningApp.Services.Models;
-using System.Threading.Tasks;
 using PatientWarningApp.Services.PatientServices;
-using PatientWarningApp.Services.Mappers;
-using PatientWarningApp.Data.Repositories;
-using PatientWarningApp.Data.Entities;
 
 namespace PatientWarningApp.Tests.DataTests
 {

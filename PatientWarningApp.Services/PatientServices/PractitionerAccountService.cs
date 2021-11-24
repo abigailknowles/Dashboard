@@ -8,46 +8,40 @@ namespace PatientWarningApp.Services.PatientServices
     public class PractitionerAccountService : IPractitionerAccountService
     {
         private readonly IPractitionerAccountRepository _practitionerAccountRepository;
-        private readonly IPractitionerAccountMapper _practitionerAccountMapper;
 
-        public PractitionerAccountService(IPractitionerAccountRepository practitionerAccountRepository, IPractitionerAccountMapper practitionerAccountMapper)
+        public PractitionerAccountService(IPractitionerAccountRepository practitionerAccountRepository)
         {
             _practitionerAccountRepository = practitionerAccountRepository;
-            _practitionerAccountMapper = practitionerAccountMapper;
         }
 
         public PractitionerAccountModel Create(PractitionerAccountModel model)
         {
-            var entity = _practitionerAccountMapper.ToEntity(model);
-            var result = _practitionerAccountRepository.Create(entity);
-            return _practitionerAccountMapper.ToModel(result);
+            var result = _practitionerAccountRepository.Create(model.ToEntity());
+            return result.ToModel();
         }
 
         public PractitionerAccountModel Delete(PractitionerAccountModel model)
         {
-            var entity = _practitionerAccountMapper.ToEntity(model);
-            var result = _practitionerAccountRepository.Delete(entity);
-            return _practitionerAccountMapper.ToModel(result);
+            var result = _practitionerAccountRepository.Delete(model.ToEntity());
+            return result.ToModel();
         }
 
         public PractitionerAccountModel Read(int id)
         {
             var result = _practitionerAccountRepository.Read(id);
-            return _practitionerAccountMapper.ToModel(result);
+            return result.ToModel();
         }
 
         public PractitionerAccountModel Update(PractitionerAccountModel model)
         {
-            var entity = _practitionerAccountMapper.ToEntity(model);
-            var result = _practitionerAccountRepository.Update(entity);
-            return _practitionerAccountMapper.ToModel(result);
+            var result = _practitionerAccountRepository.Update(model.ToEntity());
+            return result.ToModel();
         }
 
         public PractitionerAccountModel ReadByUsernameAndPassword(PractitionerAccountModel model)
         {
-            var entity = _practitionerAccountMapper.ToEntity(model);
-            var result = _practitionerAccountRepository.ReadByUsernameAndPassword(entity);
-            return _practitionerAccountMapper.ToModel(result);
+            var result = _practitionerAccountRepository.ReadByUsernameAndPassword(model.ToEntity());
+            return result.ToModel();
         }
     }
 }

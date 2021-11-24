@@ -3,34 +3,24 @@ using PatientWarningApp.Services.Models;
 
 namespace PatientWarningApp.Services.Mappers
 {
-    public class PatientAccountMapper : IPatientAccountMapper
+    public static class PatientAccountMapper 
     {
-        public PatientAccount ToEntity(PatientAccountModel model)
+        public static PatientAccount ToEntity(this PatientAccountModel model) => (model == null) ? null : new PatientAccount
         {
-            return new PatientAccount
-            {
-                Id = model.Id,
-                Email = model.Email,
-                Password = model.Password,
-                Username = model.Username
-            };
-        }
+            PatientAccountId = model.PatientAccountId,
+            PractitionerAccountId = model.PractitionerAccountId,
+            Email = model.Email,
+            Password = model.Password,
+            Username = model.Username
+        };
 
-        public PatientAccountModel ToModel(PatientAccount entity)
+        public static PatientAccountModel ToModel(this PatientAccount entity) => (entity == null) ? null : new PatientAccountModel
         {
-            return new PatientAccountModel
-            {
-                Id = entity.Id,
-                Email = entity.Email,
-                Password = entity.Password,
-                Username = entity.Username
-            };
-        }
-    }
-
-    public interface IPatientAccountMapper
-    {
-        PatientAccount ToEntity(PatientAccountModel model);
-        PatientAccountModel ToModel(PatientAccount entity);
+            PatientAccountId = entity.PatientAccountId,
+            PractitionerAccountId = entity.PractitionerAccountId,
+            Email = entity.Email,
+            Password = entity.Password,
+            Username = entity.Username
+        };
     }
 }

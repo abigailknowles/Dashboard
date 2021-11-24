@@ -8,6 +8,7 @@ namespace PatientWarningApp.Data.DbContexts
     {
         public DbSet<PractitionerAccount> PractitionerAccounts { get; set; }
         public DbSet<PatientAccount> PatientAccounts { get; set; }
+        public DbSet<Practitioner> Practitioner { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -16,8 +17,10 @@ namespace PatientWarningApp.Data.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.SetEntityMappings();
-            modelBuilder.SeedPatients();
+            modelBuilder.SeedPatientAccounts();
+            modelBuilder.SeedPractitionerAccounts();
             modelBuilder.SeedPractitioners();
+
         }
     }
 }

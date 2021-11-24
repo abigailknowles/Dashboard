@@ -9,9 +9,7 @@ namespace PatientWarningApp.Data
         public static IServiceCollection AddServicesDi(this IServiceCollection services) {
             services.AddScoped<IPractitionerAccountService, PractitionerAccountService>();
             services.AddScoped<IPatientAccountService, PatientAccountService>();
-            services.AddScoped<IPractitionerAccountMapper, PractitionerAccountMapper>();
-            services.AddScoped<IPatientAccountMapper, PatientAccountMapper>();
-            services.AddScoped<IPatientAccountMapper, PatientAccountMapper>();
+            services.AddScoped<IPractitionerService, PractitionerService>();
 
             return services;
 

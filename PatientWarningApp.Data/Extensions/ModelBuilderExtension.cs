@@ -6,12 +6,14 @@ namespace PatientWarningApp.Data.Extensions
 {
     public static class ModelBuilderExtension 
     {
-        public static void SeedPatients(this ModelBuilder modelBuilder)
+        public static void SeedPatientAccounts(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PatientAccount>().HasData(
                 new PatientAccount
                 {
                     Id = 1,
+                    PatientAccountId = 1,
+                    PractitionerAccountId = 1,
                     Email = "Patient1@example.com",
                     IsAdmin = false,
                     Password = "changeMe",
@@ -23,6 +25,7 @@ namespace PatientWarningApp.Data.Extensions
                 new PatientAccount
                 {
                     Id = 2,
+                    PatientAccountId = 2,
                     Email = "Patient1@example.com",
                     IsAdmin = false,
                     Password = "changeMe",
@@ -31,15 +34,33 @@ namespace PatientWarningApp.Data.Extensions
             );
         }
 
-        public static void SeedPractitioners(this ModelBuilder modelBuilder) {
+        public static void SeedPractitionerAccounts(this ModelBuilder modelBuilder) {
             modelBuilder.Entity<PractitionerAccount>().HasData(
                 new PractitionerAccount
                 {
                     Id = 1,
-                    Username = "richardsi",
-                    Password = "richardsi",
+                    PractitionerAccountId = 1,
+                    Username = "abigail",
+                    Password = "password",
                     IsAdmin = true,
                     Email = "richardsi@example.com"
+                }
+            );
+        }
+
+        public static void SeedPractitioners(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Practitioner>().HasData(
+                new Practitioner
+                {
+                    Id = 1,
+                    PractitionerId = 1,
+                    FirstName = "Abigail",
+                    LastName = "Knowles",
+                    Gender = "Female",
+                    DOB = "08/08/2000",
+                    MobileNumber = "1234567890",
+                    Title = "Miss"
                 }
             );
         }
@@ -49,34 +70,42 @@ namespace PatientWarningApp.Data.Extensions
             // Map entities to tables  
             modelBuilder.Entity<PractitionerAccount>().ToTable("PractitionerAccounts");
             modelBuilder.Entity<PatientAccount>().ToTable("PatientAccounts");
+            modelBuilder.Entity<Practitioner>().ToTable("Practitioners");
 
             // Configure Primary Keys  
-            modelBuilder.Entity<PractitionerAccount>().HasKey(ug => ug.Id).HasName("PK_Accounts");
-            modelBuilder.Entity<PatientAccount>().HasKey(ug => ug.Id).HasName("PK_Accounts");
+            modelBuilder.Entity<PractitionerAccount>().HasKey(ug => ug.PractitionerAccountId).HasName("PK_PractitionerAccounts");
+            modelBuilder.Entity<PatientAccount>().HasKey(ug => ug.PatientAccountId).HasName("PK_PatientAccounts");
+            modelBuilder.Entity<Practitioner>().HasKey(ug => ug.PractitionerId).HasName("PK_Practitioners");
 
             // Configure Forgien Keys
-            // 
-            modelBuilder.Entity<PatientAccount>()
-            .Property<int>("PractitionerId");
+            
 
-            modelBuilder.Entity<PatientAccount>().HasOne(o => o.Practitioner).WithMany(o => o.PatientAccounts).HasForeignKey("PractitionerId");
-
-            // Configure indexes  
-            modelBuilder.Entity<PractitionerAccount>().HasIndex(p => p.Username).IsUnique().HasDatabaseName("Idx_Username");
-            modelBuilder.Entity<PatientAccount>().HasIndex(p => p.Username).IsUnique().HasDatabaseName("Idx_Username");
+            // Configure indexes 
+            modelBuilder.Entity<Practitioner>().HasIndex(p => p.FirstName).HasDatabaseName("Idx_FirstName");
+            modelBuilder.Entity<Practitioner>().HasIndex(p => p.LastName).HasDatabaseName("Idx_LastName");
 
             // Configure columns  
-            modelBuilder.Entity<PractitionerAccount>().Property(ug => ug.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+            modelBuilder.Entity<PractitionerAccount>().Property(ug => ug.PractitionerAccountId).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<PractitionerAccount>().Property(ug => ug.Email).HasColumnType("nvarchar(255)").IsRequired();
             modelBuilder.Entity<PractitionerAccount>().Property(ug => ug.Password).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PractitionerAccount>().Property(ug => ug.Username).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PractitionerAccount>().Property(ug => ug.IsAdmin).HasColumnType("tinyint").IsRequired();
 
-            modelBuilder.Entity<PatientAccount>().Property(ug => ug.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<PatientAccount>().Property(ug => ug.Email).HasColumnType("nvarchar(255)").IsRequired();
             modelBuilder.Entity<PatientAccount>().Property(ug => ug.Password).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PatientAccount>().Property(ug => ug.Username).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PatientAccount>().Property(ug => ug.IsAdmin).HasColumnType("tinyint").IsRequired();
+            modelBuilder.Entity<PatientAccount>().Property(ug => ug.PatientAccountId).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+
+            modelBuilder.Entity<Practitioner>().Property(ug => ug.PractitionerId).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+            modelBuilder.Entity<Practitioner>().Property(ug => ug.Title).HasColumnType("nvarchar(20)").IsRequired();
+            modelBuilder.Entity<Practitioner>().Property(ug => ug.FirstName).HasColumnType("nvarchar(100)").IsRequired();
+            modelBuilder.Entity<Practitioner>().Property(ug => ug.LastName).HasColumnType("nvarchar(100)").IsRequired();
+            modelBuilder.Entity<Practitioner>().Property(ug => ug.MobileNumber).HasColumnType("nvarchar(13)").IsRequired();
+            modelBuilder.Entity<Practitioner>().Property(ug => ug.DOB).HasColumnType("nvarchar(10)").IsRequired();
+            modelBuilder.Entity<Practitioner>().Property(ug => ug.Gender).HasColumnType("nvarchar(30)").IsRequired();
+
+
         }
     }
 }

@@ -21,9 +21,9 @@ namespace PatientWarningApp.Tests.DataTests
             // Insert seed data into the database using one instance of the context
             using (var context = new AppDbContext(_options))
             {
-                context.PatientAccounts.Add(new PatientAccount { Id = 1 });
-                context.PatientAccounts.Add(new PatientAccount { Id = 2 });
-                context.PatientAccounts.Add(new PatientAccount { Id = 3 });
+                context.PatientAccounts.Add(new PatientAccount { PatientAccountId = 1 });
+                context.PatientAccounts.Add(new PatientAccount { PatientAccountId = 2 });
+                context.PatientAccounts.Add(new PatientAccount { PatientAccountId = 3 });
                 context.SaveChanges();
             }
         }
@@ -42,17 +42,17 @@ namespace PatientWarningApp.Tests.DataTests
         public void GivenAnPatientAccount_CreateReturnsEntity_WithId()
         {
             //Arrange
-            var PatientAccount = new PatientAccount();
+            var patientAccount = new PatientAccount();
 
             //Act
             using (var context = new AppDbContext(_options))
             {
                 _patientAccountRepository = new PatientAccountRepository(context);
 
-                var result = _patientAccountRepository.Create(PatientAccount);
+                var result = _patientAccountRepository.Create(patientAccount);
 
                 //Assert
-                Assert.That(result.Id, Is.EqualTo(4));
+                Assert.That(result.PatientAccountId, Is.EqualTo(4));
             }
         }
 
@@ -60,18 +60,18 @@ namespace PatientWarningApp.Tests.DataTests
         public void GivenAnPatientAccount_DeleteReturnsEntity_WithIdAndPatientAccountIsDeleted()
         {
             //Arrange
-            var PatientAccount = new PatientAccount() { Id = 2 };
+            var patientAccount = new PatientAccount() { PatientAccountId = 2 };
 
             //Act
             using (var context = new AppDbContext(_options))
             {
                 _patientAccountRepository = new PatientAccountRepository(context);
 
-                var result = _patientAccountRepository.Delete(PatientAccount);
-                var readResult = _patientAccountRepository.Read(PatientAccount.Id);
+                var result = _patientAccountRepository.Delete(patientAccount);
+                var readResult = _patientAccountRepository.Read(patientAccount.PatientAccountId);
 
                 //Assert
-                Assert.That(result.Id, Is.EqualTo(2));
+                Assert.That(result.PatientAccountId, Is.EqualTo(2));
                 Assert.That(readResult, Is.Null);
             }
         }
@@ -80,17 +80,17 @@ namespace PatientWarningApp.Tests.DataTests
         public void GivenAnPatientAccountId_ReadReturnsEntity()
         {
             //Arrange
-            var PatientAccount = new PatientAccount() { Id = 2 };
+            var patientAccount = new PatientAccount() { PatientAccountId = 2 };
 
             //Act
             using (var context = new AppDbContext(_options))
             {
                 _patientAccountRepository = new PatientAccountRepository(context);
 
-                var readResult = _patientAccountRepository.Read(PatientAccount.Id);
+                var readResult = _patientAccountRepository.Read(patientAccount.PatientAccountId);
 
                 //Assert
-                Assert.That(readResult.Id, Is.EqualTo(2));
+                Assert.That(readResult.PatientAccountId, Is.EqualTo(2));
             }
         }
 
@@ -98,7 +98,7 @@ namespace PatientWarningApp.Tests.DataTests
         public void GivenAnAccount_UpdateReturnsEntity_WithUpdatedValue()
         {
             //Arrange
-            var account = new PatientAccount() { Id = 2, Email = "example@example.com" };
+            var account = new PatientAccount() { PatientAccountId = 2, Email = "example@example.com" };
 
             //Act
             using (var context = new AppDbContext(_options))
@@ -108,7 +108,7 @@ namespace PatientWarningApp.Tests.DataTests
                 var readResult = _patientAccountRepository.Update(account);
 
                 //Assert
-                Assert.That(readResult.Id, Is.EqualTo(2));
+                Assert.That(readResult.PatientAccountId, Is.EqualTo(2));
             }
         }
     }

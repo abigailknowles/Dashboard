@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using PatientWarningApp.Api.Interactors;
 using PatientWarningApp.Services;
 using PatientWarningApp.Services.Models;
 using PatientWarningApp.Services.PatientServices;
@@ -40,7 +41,7 @@ namespace PatientWarningApp.Tests.Interactor_Tests
                     PractitionerId = 1
                 }
             });
-            _practitionerService.Setup(o => o.Read(It.IsAny<PractitionerAccountModel>())).Returns(new PractitionerAccountModel { });
+            _practitionerService.Setup(o => o.Read(It.IsAny<int>())).Returns(new PractitionerAccountModel { });
 
             _interactor = new PractitionerInteractor(_practitionerService.Object, _patientService.Object);
 
