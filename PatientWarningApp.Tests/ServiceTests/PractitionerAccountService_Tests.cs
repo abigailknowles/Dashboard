@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using PatientWarningApp.Data.Entities;
 using PatientWarningApp.Data.Repositories;
-using PatientWarningApp.Services.Mappers;
 using PatientWarningApp.Services.Models;
 using PatientWarningApp.Services.PatientServices;
 
@@ -22,8 +21,8 @@ namespace PatientWarningApp.Tests.ServiceTests
         {
             _practitionerAccountRepository = new Mock<IPractitionerAccountRepository>();
 
-            _practioner = new PractitionerAccount() { Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
-            _practionerModel = new PractitionerAccountModel { Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
+            _practioner = new PractitionerAccount() { PractitionerAccountId=1, Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
+            _practionerModel = new PractitionerAccountModel { PractitionerAccountId = 1, Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
 
             _practitionerAccountRepository.Setup(o => o.Create(It.IsAny<PractitionerAccount>())).Returns(_practioner);
             _practitionerAccountRepository.Setup(o => o.Read(It.IsAny<int>())).Returns(_practioner);

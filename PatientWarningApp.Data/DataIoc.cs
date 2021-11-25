@@ -8,6 +8,7 @@ namespace PatientWarningApp.Data
         public static IServiceCollection AddDataDi(this IServiceCollection services) {
             services.AddScoped<IPractitionerAccountRepository, PractitionerAccountRepository>();
             services.AddScoped<IPractitionerRepository, PractitionerRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IPatientAccountRepository, PatientAccountRepository>();
 
             return services;

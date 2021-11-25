@@ -50,6 +50,27 @@ namespace PatientWarningApp.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Patients",
+                columns: table => new
+                {
+                    PatientId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    DOB = table.Column<string>(type: "nvarchar(10)", nullable: false),
+                    MobileNumber = table.Column<string>(type: "nvarchar(13)", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Patients", x => x.PatientId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Practitioners",
                 columns: table => new
                 {
@@ -116,6 +137,11 @@ namespace PatientWarningApp.Data.Migrations
                 column: "PractitionerAccountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Patients_AddressId",
+                table: "Patients",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
                 name: "Idx_FirstName",
                 table: "Practitioners",
                 column: "FirstName");
@@ -135,6 +161,9 @@ namespace PatientWarningApp.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "PatientAccounts");
+
+            migrationBuilder.DropTable(
+                name: "Patients");
 
             migrationBuilder.DropTable(
                 name: "Practitioners");

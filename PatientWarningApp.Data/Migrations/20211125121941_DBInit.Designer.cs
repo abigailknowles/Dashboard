@@ -10,7 +10,7 @@ using PatientWarningApp.Data.DbContexts;
 namespace PatientWarningApp.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211124211344_DBInit")]
+    [Migration("20211125121941_DBInit")]
     partial class DBInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,51 @@ namespace PatientWarningApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("PatientWarningApp.Data.Entities.Patient", b =>
+                {
+                    b.Property<int>("PatientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DOB")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("PatientId")
+                        .HasName("PK_Patients");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("PatientWarningApp.Data.Entities.PatientAccount", b =>
@@ -210,6 +255,15 @@ namespace PatientWarningApp.Data.Migrations
                             Password = "password",
                             Username = "abigail"
                         });
+                });
+
+            modelBuilder.Entity("PatientWarningApp.Data.Entities.Patient", b =>
+                {
+                    b.HasOne("PatientWarningApp.Data.Entities.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("PatientWarningApp.Data.Entities.PatientAccount", b =>
