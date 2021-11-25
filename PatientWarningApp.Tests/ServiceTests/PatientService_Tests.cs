@@ -20,8 +20,8 @@ namespace PatientWarningApp.Tests.ServiceTests
         {
             _patientRepository = new Mock<IPatientRepository>();
 
-            _patient = new Patient() { Id = 1, FirstName="Abigail", LastName="Surname", Title="Miss", Gender="Female",MobileNumber="01772318926",DOB= "08/08/2000" };
-            _patientModel = new PatientModel { Id = 1, FirstName = "Abigail", LastName = "Surname", Title = "Miss", Gender = "Female", MobileNumber = "01772318926", DOB = "08/08/2000" };
+            _patient = new Patient() { PatientId=1, Id = 1, FirstName="Abigail", LastName="Surname", Title="Miss", Gender="Female",MobileNumber="01772318926",DOB= "08/08/2000" };
+            _patientModel = new PatientModel { PatientId=1, Id = 1, FirstName = "Abigail", LastName = "Surname", Title = "Miss", Gender = "Female", MobileNumber = "01772318926", DOB = "08/08/2000" };
 
             _patientRepository.Setup(o => o.Create(It.IsAny<Patient>())).Returns(_patient);
             _patientRepository.Setup(o => o.Read(It.IsAny<int>())).Returns(_patient);
@@ -42,7 +42,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var result = _patientService.Create(_patientModel);
 
             //Assert
-            Assert.That(result.Id, Is.EqualTo(1));
+            Assert.That(result.PatientId, Is.EqualTo(1));
 
         }
 
@@ -75,7 +75,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var result = _patientService.Read(_patientModel.Id);
 
             //Assert
-            Assert.That(result.Id, Is.EqualTo(1));
+            Assert.That(result.PatientId, Is.EqualTo(1));
 
         }
     }

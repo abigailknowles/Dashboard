@@ -21,8 +21,8 @@ namespace PatientWarningApp.Tests.ServiceTests
         [SetUp]
         public void Setup()
         {
-            _patient = new PatientAccount() { Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
-            _patientModel = new PatientAccountModel { Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
+            _patient = new PatientAccount() { PatientAccountId=1, Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
+            _patientModel = new PatientAccountModel { PatientAccountId=1, Id = 1, Email = "example@example.com", Password = "password", Username = "username" };
 
         }
 
@@ -45,7 +45,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var result = _patientAccountService.Create(_patientModel);
 
             //Assert
-            Assert.That(result.Id, Is.EqualTo(1));
+            Assert.That(result.PatientAccountId, Is.EqualTo(1));
 
         }
 
@@ -66,7 +66,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var readResult = _patientAccountService.Read(_patientModel.Id);
 
             //Assert
-            Assert.That(result.Id, Is.EqualTo(1));
+            Assert.That(result.PatientAccountId, Is.EqualTo(1));
             Assert.That(readResult, Is.Null);
         }
 
@@ -85,7 +85,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var readResult = _patientAccountService.Read(_patientModel.Id);
 
             //Assert
-            Assert.That(readResult.Id, Is.EqualTo(1));
+            Assert.That(readResult.PatientAccountId, Is.EqualTo(1));
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var readResult = _patientAccountService.Update(_patientModel);
 
             //Assert
-            Assert.That(readResult.Id, Is.EqualTo(1));
+            Assert.That(readResult.PatientAccountId, Is.EqualTo(1));
         }
     }
 }

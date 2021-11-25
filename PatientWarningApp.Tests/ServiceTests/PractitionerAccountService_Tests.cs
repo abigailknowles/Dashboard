@@ -43,7 +43,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var result = _practitionerAccountService.Create(_practionerModel);
 
             //Assert
-            Assert.That(result.Id, Is.EqualTo(1));
+            Assert.That(result.PractitionerAccountId, Is.EqualTo(1));
 
         }
 
@@ -61,7 +61,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var readResult = practitionerAccountService.Read(_practionerModel.Id);
 
             //Assert
-            Assert.That(result.Id, Is.EqualTo(1));
+            Assert.That(result.PractitionerAccountId, Is.EqualTo(1));
             Assert.That(readResult, Is.Null);
         }
 
@@ -72,7 +72,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var readResult = _practitionerAccountService.Read(_practionerModel.Id);
 
             //Assert
-            Assert.That(readResult.Id, Is.EqualTo(1));
+            Assert.That(readResult.PractitionerAccountId, Is.EqualTo(1));
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var readResult = _practitionerAccountService.Update(_practionerModel);
 
             //Assert
-            Assert.That(readResult.Id, Is.EqualTo(1));
+            Assert.That(readResult.PractitionerAccountId, Is.EqualTo(1));
         }
     }
 
