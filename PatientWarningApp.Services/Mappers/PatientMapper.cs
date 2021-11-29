@@ -13,7 +13,9 @@ namespace PatientWarningApp.Services.Mappers
             LastName = model.LastName,
             Gender = model.Gender,
             DOB = model.DOB,
-            MobileNumber = model.MobileNumber
+            MobileNumber = model.MobileNumber,
+            Address = model.Address,
+            Postcode = model.Postcode
         };
 
         public static PatientModel ToModel(this Patient entity) => (entity == null) ? null : new PatientModel
@@ -24,7 +26,9 @@ namespace PatientWarningApp.Services.Mappers
             LastName = entity.LastName,
             Gender = entity.Gender,
             DOB = entity.DOB,
-            MobileNumber = entity.MobileNumber
+            MobileNumber = entity.MobileNumber,
+            Address = entity.Address,
+            Postcode = entity.Postcode
         };
     }
 }

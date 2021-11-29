@@ -3,32 +3,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PatientWarningApp.Data.Migrations
 {
-    public partial class DBInit : Migration
+    public partial class DbInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Address",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    HouseNumber = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    StreetName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PostCode = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Address", x => x.Id);
-                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -45,6 +24,28 @@ namespace PatientWarningApp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Media", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Patients",
+                columns: table => new
+                {
+                    PatientId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    DOB = table.Column<string>(type: "nvarchar(10)", nullable: false),
+                    MobileNumber = table.Column<string>(type: "nvarchar(13)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Postcode = table.Column<string>(type: "nvarchar(10)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Patients", x => x.PatientId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -67,6 +68,28 @@ namespace PatientWarningApp.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Practitioners",
+                columns: table => new
+                {
+                    PractitionerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(20)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    DOB = table.Column<string>(type: "nvarchar(10)", nullable: false),
+                    MobileNumber = table.Column<string>(type: "nvarchar(13)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Postcode = table.Column<string>(type: "nvarchar(10)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Practitioners", x => x.PractitionerId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "ReviewedMedia",
                 columns: table => new
                 {
@@ -80,60 +103,6 @@ namespace PatientWarningApp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ReviewedMedia", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Patients",
-                columns: table => new
-                {
-                    PatientId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(20)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(30)", nullable: false),
-                    DOB = table.Column<string>(type: "nvarchar(10)", nullable: false),
-                    MobileNumber = table.Column<string>(type: "nvarchar(13)", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Patients", x => x.PatientId);
-                    table.ForeignKey(
-                        name: "FK_Patients_Address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Practitioners",
-                columns: table => new
-                {
-                    PractitionerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(20)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(30)", nullable: false),
-                    DOB = table.Column<string>(type: "nvarchar(10)", nullable: false),
-                    MobileNumber = table.Column<string>(type: "nvarchar(13)", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Practitioners", x => x.PractitionerId);
-                    table.ForeignKey(
-                        name: "FK_Practitioners_Address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -169,11 +138,6 @@ namespace PatientWarningApp.Data.Migrations
                 column: "PractitionerAccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Patients_AddressId",
-                table: "Patients",
-                column: "AddressId");
-
-            migrationBuilder.CreateIndex(
                 name: "Idx_FirstName",
                 table: "Practitioners",
                 column: "FirstName");
@@ -182,11 +146,6 @@ namespace PatientWarningApp.Data.Migrations
                 name: "Idx_LastName",
                 table: "Practitioners",
                 column: "LastName");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Practitioners_AddressId",
-                table: "Practitioners",
-                column: "AddressId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -208,9 +167,6 @@ namespace PatientWarningApp.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "PractitionerAccounts");
-
-            migrationBuilder.DropTable(
-                name: "Address");
         }
     }
 }
