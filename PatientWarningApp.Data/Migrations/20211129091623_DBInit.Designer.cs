@@ -10,7 +10,7 @@ using PatientWarningApp.Data.DbContexts;
 namespace PatientWarningApp.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211125121941_DBInit")]
+    [Migration("20211129091623_DBInit")]
     partial class DBInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,35 @@ namespace PatientWarningApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("PatientWarningApp.Data.Entities.Media", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Director")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ReleaseDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id")
+                        .HasName("PK_Media");
+
+                    b.ToTable("Media");
                 });
 
             modelBuilder.Entity("PatientWarningApp.Data.Entities.Patient", b =>
@@ -125,30 +154,6 @@ namespace PatientWarningApp.Data.Migrations
                     b.HasIndex("PractitionerAccountId");
 
                     b.ToTable("PatientAccounts");
-
-                    b.HasData(
-                        new
-                        {
-                            PatientAccountId = 1,
-                            Email = "Patient1@example.com",
-                            Id = 1,
-                            IsAdmin = (sbyte)0,
-                            Password = "changeMe",
-                            PatientId = 0,
-                            PractitionerAccountId = 1,
-                            Username = "Username"
-                        },
-                        new
-                        {
-                            PatientAccountId = 2,
-                            Email = "Patient1@example.com",
-                            Id = 2,
-                            IsAdmin = (sbyte)0,
-                            Password = "changeMe",
-                            PatientId = 0,
-                            PractitionerAccountId = 0,
-                            Username = "Username"
-                        });
                 });
 
             modelBuilder.Entity("PatientWarningApp.Data.Entities.Practitioner", b =>
@@ -200,19 +205,6 @@ namespace PatientWarningApp.Data.Migrations
                         .HasDatabaseName("Idx_LastName");
 
                     b.ToTable("Practitioners");
-
-                    b.HasData(
-                        new
-                        {
-                            PractitionerId = 1,
-                            DOB = "08/08/2000",
-                            FirstName = "Abigail",
-                            Gender = "Female",
-                            Id = 1,
-                            LastName = "Knowles",
-                            MobileNumber = "1234567890",
-                            Title = "Miss"
-                        });
                 });
 
             modelBuilder.Entity("PatientWarningApp.Data.Entities.PractitionerAccount", b =>
@@ -244,17 +236,34 @@ namespace PatientWarningApp.Data.Migrations
                         .HasName("PK_PractitionerAccounts");
 
                     b.ToTable("PractitionerAccounts");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            PractitionerAccountId = 1,
-                            Email = "richardsi@example.com",
-                            Id = 1,
-                            IsAdmin = (sbyte)1,
-                            Password = "password",
-                            Username = "abigail"
-                        });
+            modelBuilder.Entity("PatientWarningApp.Data.Entities.ReviewedMedia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EpilepsyRating")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("SeizureTriggerTimes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id")
+                        .HasName("PK_ReviewedMedia");
+
+                    b.ToTable("ReviewedMedia");
                 });
 
             modelBuilder.Entity("PatientWarningApp.Data.Entities.Patient", b =>

@@ -1,23 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PatientWarningApp.Data.Entities;
-using System.Collections.Generic;
 
 namespace PatientWarningApp.Data.Extensions
 {
     public static class ModelBuilderExtension 
     {
-        public static void SeedPatientAccounts(this ModelBuilder modelBuilder)
+     /*   public static void SeedPatientAccounts(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PatientAccount>().HasData(
                 new PatientAccount
                 {
                     Id = 1,
-                    PatientAccountId = 1,
+                    PatientAccountId = 2,
                     PractitionerAccountId = 1,
-                    Email = "Patient1@example.com",
+                    Email = "joebanks@patientportal.com",
                     IsAdmin = false,
-                    Password = "changeMe",
-                    Username = "Username"
+                    Password = "password",
+                    Username = "joebanks"
                 }
             );
 
@@ -26,10 +25,10 @@ namespace PatientWarningApp.Data.Extensions
                 {
                     Id = 2,
                     PatientAccountId = 2,
-                    Email = "Patient1@example.com",
+                    Email = "islamclucas@patientportal.com",
                     IsAdmin = false,
-                    Password = "changeMe",
-                    Username = "Username"
+                    Password = "password",
+                    Username = "islamclucas"
                 }
             );
         }
@@ -40,10 +39,21 @@ namespace PatientWarningApp.Data.Extensions
                 {
                     Id = 1,
                     PractitionerAccountId = 1,
-                    Username = "abigail",
+                    Username = "abigailknowles",
                     Password = "password",
                     IsAdmin = true,
-                    Email = "richardsi@example.com"
+                    Email = "abigailknowles@patientportal.com"
+                }
+            );
+            modelBuilder.Entity<PractitionerAccount>().HasData(
+               new PractitionerAccount
+               {
+                   Id = 1,
+                    PractitionerAccountId = 1,
+                    Username = "janedoe",
+                    Password = "password",
+                    IsAdmin = true,
+                    Email = "janedoe@patientportal.com"
                 }
             );
         }
@@ -82,7 +92,7 @@ namespace PatientWarningApp.Data.Extensions
                 }
             );
         }
-
+*/
         public static void SetEntityMappings(this ModelBuilder modelBuilder)
         {
             // Map entities to tables  

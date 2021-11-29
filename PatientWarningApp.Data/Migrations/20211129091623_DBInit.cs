@@ -32,6 +32,23 @@ namespace PatientWarningApp.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Media",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Genre = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    ReleaseDate = table.Column<string>(type: "nvarchar(200)", nullable: false),
+                    Director = table.Column<string>(type: "nvarchar(100)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Media", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "PractitionerAccounts",
                 columns: table => new
                 {
@@ -46,6 +63,23 @@ namespace PatientWarningApp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PractitionerAccounts", x => x.PractitionerAccountId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "ReviewedMedia",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    FilmId = table.Column<int>(type: "int", nullable: false),
+                    EpilepsyRating = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    SeizureTriggerTimes = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(200)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReviewedMedia", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -67,6 +101,12 @@ namespace PatientWarningApp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patients", x => x.PatientId);
+                    table.ForeignKey(
+                        name: "FK_Patients_Address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Address",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -88,6 +128,12 @@ namespace PatientWarningApp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Practitioners", x => x.PractitionerId);
+                    table.ForeignKey(
+                        name: "FK_Practitioners_Address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Address",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -108,28 +154,14 @@ namespace PatientWarningApp.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PatientAccounts", x => x.PatientAccountId);
+                    table.ForeignKey(
+                        name: "FK_PatientAccounts_PractitionerAccounts_PractitionerAccountId",
+                        column: x => x.PractitionerAccountId,
+                        principalTable: "PractitionerAccounts",
+                        principalColumn: "PractitionerAccountId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.InsertData(
-                table: "PatientAccounts",
-                columns: new[] { "PatientAccountId", "Email", "Id", "IsAdmin", "Password", "PatientId", "PractitionerAccountId", "Username" },
-                values: new object[] { 2, "Patient1@example.com", 2, (sbyte)0, "changeMe", 0, 0, "Username" });
-
-            migrationBuilder.InsertData(
-                table: "PractitionerAccounts",
-                columns: new[] { "PractitionerAccountId", "Email", "Id", "IsAdmin", "Password", "Username" },
-                values: new object[] { 1, "richardsi@example.com", 1, (sbyte)1, "password", "abigail" });
-
-            migrationBuilder.InsertData(
-                table: "Practitioners",
-                columns: new[] { "PractitionerId", "AddressId", "DOB", "FirstName", "Gender", "Id", "LastName", "MobileNumber", "Title" },
-                values: new object[] { 1, null, "08/08/2000", "Abigail", "Female", 1, "Knowles", "1234567890", "Miss" });
-
-            migrationBuilder.InsertData(
-                table: "PatientAccounts",
-                columns: new[] { "PatientAccountId", "Email", "Id", "IsAdmin", "Password", "PatientId", "PractitionerAccountId", "Username" },
-                values: new object[] { 1, "Patient1@example.com", 1, (sbyte)0, "changeMe", 0, 1, "Username" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PatientAccounts_PractitionerAccountId",
@@ -160,6 +192,9 @@ namespace PatientWarningApp.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Media");
+
+            migrationBuilder.DropTable(
                 name: "PatientAccounts");
 
             migrationBuilder.DropTable(
@@ -167,6 +202,9 @@ namespace PatientWarningApp.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Practitioners");
+
+            migrationBuilder.DropTable(
+                name: "ReviewedMedia");
 
             migrationBuilder.DropTable(
                 name: "PractitionerAccounts");

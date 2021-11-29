@@ -21,9 +21,9 @@ namespace PatientWarningApp.Data.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.SetEntityMappings();
-            modelBuilder.SeedPatientAccounts();
+           /* modelBuilder.SeedPatientAccounts();
             modelBuilder.SeedPractitionerAccounts();
-            modelBuilder.SeedPractitioners();
+            modelBuilder.SeedPractitioners();*/
 
         }
     }
