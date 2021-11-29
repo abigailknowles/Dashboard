@@ -20,8 +20,8 @@ namespace PatientWarningApp.Tests.ServiceTests
         {
             _mediaRepository = new Mock<IMediaRepository>();
 
-            _media = new Media() { Id=1, Title="Shrek", Genre="Family", EpilepsyRating="1/10", Notes="Safe to watch" };
-            _mediaModel = new MediaModel { Id = 1, Title = "Shrek", Genre = "Family", EpilepsyRating = "1/10", Notes = "Safe to watch" };
+            _media = new Media() { Id=1, Title="Shrek", Genre="Family", Director="JK Rowling", ReleaseDate="08/08/2000" };
+            _mediaModel = new MediaModel { Id = 1, Title = "Shrek", Genre = "Family", Director = "JK Rowling", ReleaseDate = "08/08/2000" };
 
             _mediaRepository.Setup(o => o.Create(It.IsAny<Media>())).Returns(_media);
             _mediaRepository.Setup(o => o.Read(It.IsAny<int>())).Returns(_media);

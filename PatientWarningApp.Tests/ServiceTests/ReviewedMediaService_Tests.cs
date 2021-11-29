@@ -20,8 +20,8 @@ namespace PatientWarningApp.Tests.ServiceTests
         {
             _reviewedMediaRepository = new Mock<IReviewedMediaRepository>();
 
-            _reviewedMedia = new ReviewedMedia() { Id=1, Title="Shrek", Genre="Family", EpilepsyRating="1/10", Notes="Safe to watch" };
-            _reviewedMediaModel = new ReviewedMediaModel { Id = 1, Title = "Shrek", Genre = "Family", EpilepsyRating = "1/10", Notes = "Safe to watch" };
+            _reviewedMedia = new ReviewedMedia() { Id=1, FilmId=1, SeizureTriggerTimes="Half way", EpilepsyRating="1/10", Notes="Safe to watch" };
+            _reviewedMediaModel = new ReviewedMediaModel { Id = 1, FilmId = 1, SeizureTriggerTimes = "Half way", EpilepsyRating = "1/10", Notes = "Safe to watch" };
 
             _reviewedMediaRepository.Setup(o => o.Create(It.IsAny<ReviewedMedia>())).Returns(_reviewedMedia);
             _reviewedMediaRepository.Setup(o => o.Read(It.IsAny<int>())).Returns(_reviewedMedia);
@@ -64,7 +64,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var result = _reviewedMediaService.Update(_reviewedMediaModel);
 
             //Assert
-            Assert.That(result.Title, Is.EqualTo("Shrek"));
+            Assert.That(result.SeizureTriggerTimes, Is.EqualTo("Half way"));
 
         }
 
@@ -75,7 +75,7 @@ namespace PatientWarningApp.Tests.ServiceTests
             var result = _reviewedMediaService.Read(_reviewedMediaModel.Id);
 
             //Assert
-            Assert.That(result.Title, Is.EqualTo("Shrek"));
+            Assert.That(result.SeizureTriggerTimes, Is.EqualTo("Half way"));
 
         }
     }

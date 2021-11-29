@@ -10,8 +10,8 @@ namespace PatientWarningApp.Services.Mappers
             Id = model.Id,
             Title = model.Title,
             Genre  = model.Genre,
-            EpilepsyRating = model.EpilepsyRating,
-            Notes = model.Notes
+            ReleaseDate = model.ReleaseDate,
+            Director = model.Director
         };
 
         public static MediaModel ToModel(this Media entity) => (entity == null) ? null : new MediaModel
@@ -19,8 +19,8 @@ namespace PatientWarningApp.Services.Mappers
             Id = entity.Id,
             Title = entity.Title,
             Genre = entity.Genre,
-            EpilepsyRating = entity.EpilepsyRating,
-            Notes = entity.Notes
+            ReleaseDate = entity.ReleaseDate,
+            Director = entity.Director
         };
     }
 }

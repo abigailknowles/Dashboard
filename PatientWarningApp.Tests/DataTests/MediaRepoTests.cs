@@ -36,8 +36,8 @@ namespace PatientWarningApp.Tests.DataTests
                 Id = 1,
                 Title = "Shrek",
                 Genre = "Family",
-                EpilepsyRating="1/10",
-                Notes="Suitable"
+                Director="JK Rowling",
+                ReleaseDate="08/08/2000"
                 };
 
             //Act
@@ -108,8 +108,8 @@ namespace PatientWarningApp.Tests.DataTests
                 Id = 7,
                 Title = "Shrek",
                 Genre = "Family",
-                EpilepsyRating = "1/10",
-                Notes = "Suitable"
+                Director = "JK Rowling",
+                ReleaseDate = "08/08/2000"
             };
 
             //Act

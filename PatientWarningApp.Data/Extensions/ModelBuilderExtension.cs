@@ -140,13 +140,12 @@ namespace PatientWarningApp.Data.Extensions
             modelBuilder.Entity<Media>().Property(ug => ug.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<Media>().Property(ug => ug.Title).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<Media>().Property(ug => ug.Genre).HasColumnType("nvarchar(100)").IsRequired();
-            modelBuilder.Entity<Media>().Property(ug => ug.EpilepsyRating).HasColumnType("nvarchar(100)").IsRequired();
-            modelBuilder.Entity<Media>().Property(ug => ug.Notes).HasColumnType("nvarchar(200)").IsRequired();
+            modelBuilder.Entity<Media>().Property(ug => ug.Director).HasColumnType("nvarchar(100)").IsRequired();
+            modelBuilder.Entity<Media>().Property(ug => ug.ReleaseDate).HasColumnType("nvarchar(200)").IsRequired();
 
             modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
-            modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.Title).HasColumnType("nvarchar(100)").IsRequired();
-            modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.Genre).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.EpilepsyRating).HasColumnType("nvarchar(100)").IsRequired();
+            modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.SeizureTriggerTimes).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.Notes).HasColumnType("nvarchar(200)").IsRequired();
 
         }
