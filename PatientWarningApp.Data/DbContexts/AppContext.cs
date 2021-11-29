@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PatientWarningApp.Data.Entities;
 using PatientWarningApp.Data.Extensions;
+using PatientWarningApp.Services.Models;
 
 namespace PatientWarningApp.Data.DbContexts
 {
@@ -12,6 +13,7 @@ namespace PatientWarningApp.Data.DbContexts
         public DbSet<Patient> Patient { get; set; }
         public DbSet<Media> Media { get; set; }
         public DbSet<ReviewedMedia> ReviewedMedia { get; set; }
+        public DbSet<MedicalRecord> MedicalRecords { get; set; }
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
