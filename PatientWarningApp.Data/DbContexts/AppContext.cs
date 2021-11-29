@@ -11,6 +11,7 @@ namespace PatientWarningApp.Data.DbContexts
         public DbSet<Practitioner> Practitioner { get; set; }
         public DbSet<Patient> Patient { get; set; }
         public DbSet<Media> Media { get; set; }
+        public DbSet<ReviewedMedia> ReviewedMedia { get; set; }
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)

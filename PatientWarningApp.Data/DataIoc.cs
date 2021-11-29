@@ -11,6 +11,7 @@ namespace PatientWarningApp.Data
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IPatientAccountRepository, PatientAccountRepository>();
             services.AddScoped<IMediaRepository, MediaRepository>();
+            services.AddScoped<IReviewedMediaRepository, ReviewedMediaRepository>();
 
             return services;
 

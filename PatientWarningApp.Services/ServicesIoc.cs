@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PatientWarningApp.Services.Mappers;
 using PatientWarningApp.Services.PatientServices;
 
 namespace PatientWarningApp.Data
@@ -12,7 +11,7 @@ namespace PatientWarningApp.Data
             services.AddScoped<IPractitionerService, PractitionerService>();
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IMediaService, MediaService>();
-
+            services.AddScoped<IReviewedMediaService, ReviewedMediaService>();
             return services;
 
         }

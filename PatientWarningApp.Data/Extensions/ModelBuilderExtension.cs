@@ -91,6 +91,7 @@ namespace PatientWarningApp.Data.Extensions
             modelBuilder.Entity<Practitioner>().ToTable("Practitioners");
             modelBuilder.Entity<Patient>().ToTable("Patients");
             modelBuilder.Entity<Media>().ToTable("Media");
+            modelBuilder.Entity<ReviewedMedia>().ToTable("ReviewedMedia");
 
             // Configure Primary Keys  
             modelBuilder.Entity<PractitionerAccount>().HasKey(ug => ug.PractitionerAccountId).HasName("PK_PractitionerAccounts");
@@ -98,6 +99,7 @@ namespace PatientWarningApp.Data.Extensions
             modelBuilder.Entity<Practitioner>().HasKey(ug => ug.PractitionerId).HasName("PK_Practitioners");
             modelBuilder.Entity<Patient>().HasKey(ug => ug.PatientId).HasName("PK_Patients");
             modelBuilder.Entity<Media>().HasKey(ug => ug.Id).HasName("PK_Media");
+            modelBuilder.Entity<ReviewedMedia>().HasKey(ug => ug.Id).HasName("PK_ReviewedMedia");
 
             // Configure Forgien Keys
 
@@ -135,12 +137,17 @@ namespace PatientWarningApp.Data.Extensions
             modelBuilder.Entity<Patient>().Property(ug => ug.DOB).HasColumnType("nvarchar(10)").IsRequired();
             modelBuilder.Entity<Patient>().Property(ug => ug.Gender).HasColumnType("nvarchar(30)").IsRequired();
 
-
             modelBuilder.Entity<Media>().Property(ug => ug.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<Media>().Property(ug => ug.Title).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<Media>().Property(ug => ug.Genre).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<Media>().Property(ug => ug.EpilepsyRating).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<Media>().Property(ug => ug.Notes).HasColumnType("nvarchar(200)").IsRequired();
+
+            modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+            modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.Title).HasColumnType("nvarchar(100)").IsRequired();
+            modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.Genre).HasColumnType("nvarchar(100)").IsRequired();
+            modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.EpilepsyRating).HasColumnType("nvarchar(100)").IsRequired();
+            modelBuilder.Entity<ReviewedMedia>().Property(ug => ug.Notes).HasColumnType("nvarchar(200)").IsRequired();
 
         }
     }

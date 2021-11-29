@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using PatientWarningApp.Services.Models;
 using PatientWarningApp.Services.PatientServices;
 
