@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PatientWarningApp.Services.Models;
-using PatientWarningApp.Services.PatientServices;
+using PatientWarningApp.Api.PractitionerAccount.Interfaces;
+using PatientWarningApp.Api.PractitionerAccount.Models;
 
-namespace PaitentWarning.Web.Controllers
+namespace PatientWarningApp.Api.Controllers
 {
+    //TODO: needs to be refactored to be a general use login controller
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase

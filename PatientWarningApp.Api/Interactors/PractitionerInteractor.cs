@@ -1,18 +1,30 @@
-﻿using PatientWarningApp.Services.Models;
-using PatientWarningApp.Services.PatientServices;
-using System.Linq;
+﻿using System.Linq;
+using PatientWarningApp.Api.PatientAccount.Interfaces;
+using PatientWarningApp.Api.PractitionerAccount.Interfaces;
+using PatientWarningApp.Api.PractitionerAccount.Models;
 
 namespace PatientWarningApp.Api.Interactors
 {
+    //TODO: Needs extending to include all use cases
     public class PractitionerInteractor : IPractitionerInteractor
     {
-        private IPractitionerAccountService _practitionerService;
+        private readonly IPractitionerAccountService _practitionerService;
         private readonly IPatientAccountService _patientService;
 
         public PractitionerInteractor(IPractitionerAccountService practitionerService, IPatientAccountService patientService)
         {
             _practitionerService = practitionerService;
             _patientService = patientService;
+        }
+
+        public PractitionerAccountModel Read(int id)
+        {
+            var practitioner = _practitionerService.Read(id);
+            var patients = _patientService.ReadAll();
+
+            practitioner.PatientAccounts = patients.Where(p => p.PractitionerId == practitioner.PractitionerAccountId).ToList();
+
+            return practitioner;
         }
 
         public PractitionerAccountModel AddPatientToPractitionerAccount(PractitionerAccountModel practitionerAccountModel)
@@ -24,13 +36,32 @@ namespace PatientWarningApp.Api.Interactors
 
             //Ensure we have updated the database by clearing the list and repopulating with fresh data
             practitionerAccountModel.PatientAccounts = null;
-            practitionerAccountModel.PatientAccounts = _patientService.ReadAll().Where(o => o.PractitionerId == practitionerAccountModel.Id).ToList();
+            practitionerAccountModel.PatientAccounts = _patientService.ReadAll().Where(o => o.PatientAccountId == practitionerAccountModel.PractitionerAccountId).ToList();
             return practitionerAccountModel;
+        }
+
+        public object Delete(PractitionerAccountModel account)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public object Create(PractitionerAccountModel account)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public object Update(PractitionerAccountModel account)
+        {
+            throw new System.NotImplementedException();
         }
     }
 
     public interface IPractitionerInteractor
     {
+        PractitionerAccountModel Read(int id);
         PractitionerAccountModel AddPatientToPractitionerAccount(PractitionerAccountModel practitionerAccountModel);
+        object Delete(PractitionerAccountModel account);
+        object Create(PractitionerAccountModel account);
+        object Update(PractitionerAccountModel account);
     }
 }

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ControllerTests\PatientAccountRepoTests.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.12" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
     <PackageReference Include="Moq" Version="4.16.1" />
@@ -21,8 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PatientWarningApp.Api\PatientWarningApp.Api.csproj" />
-    <ProjectReference Include="..\PatientWarningApp.Data\PatientWarningApp.Data.csproj" />
-    <ProjectReference Include="..\PatientWarningApp.Services\PatientWarningApp.Services.csproj" />
   </ItemGroup>
 
 </Project>

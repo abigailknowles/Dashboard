@@ -6,8 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PatientWarningApp.Api.Shared;
+using PatientWarningApp.Api.Shared.Contexts;
 using PatientWarningApp.Data;
-using PatientWarningApp.Data.DbContexts;
 
 namespace PatientWarningApp.Api
 {

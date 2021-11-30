@@ -8,4 +8,10 @@
     <ProjectReference Include="..\PatientWarningApp.Data\PatientWarningApp.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+    <Folder Include="Models\" />
+    <Folder Include="PatientServices\" />
+  </ItemGroup>
+
 </Project>
