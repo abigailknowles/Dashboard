@@ -142,6 +142,7 @@ namespace PatientWarningApp.Api.Shared.Extensions
             modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.LastName).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.MobileNumber).HasColumnType("nvarchar(13)").IsRequired();
             modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.DOB).HasColumnType("nvarchar(10)").IsRequired();
+            modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.Age).HasColumnType("int").IsRequired();
             modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.Gender).HasColumnType("nvarchar(30)").IsRequired();
             modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.Address).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.Postcode).HasColumnType("nvarchar(10)").IsRequired();
@@ -152,6 +153,7 @@ namespace PatientWarningApp.Api.Shared.Extensions
             modelBuilder.Entity<PatientEntity>().Property(ug => ug.LastName).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PatientEntity>().Property(ug => ug.MobileNumber).HasColumnType("nvarchar(13)").IsRequired();
             modelBuilder.Entity<PatientEntity>().Property(ug => ug.DOB).HasColumnType("nvarchar(10)").IsRequired();
+            modelBuilder.Entity<PatientEntity>().Property(ug => ug.Age).HasColumnType("int").IsRequired();
             modelBuilder.Entity<PatientEntity>().Property(ug => ug.Gender).HasColumnType("nvarchar(30)").IsRequired();
             modelBuilder.Entity<PatientEntity>().Property(ug => ug.Address).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PatientEntity>().Property(ug => ug.Postcode).HasColumnType("nvarchar(10)").IsRequired();

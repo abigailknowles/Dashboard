@@ -32,7 +32,7 @@ namespace PatientWarningApp.Tests.PractitionerTests
         public void GivenAnAccountExists_CreatePractitionerRecord()
         {
             //Arrange
-            var practitioner = new PractitionerEntity() { 
+            var entity = new PractitionerEntity() { 
                 Id = 1,
                 PractitionerId = 1,
                 Title = "Miss",
@@ -44,21 +44,17 @@ namespace PatientWarningApp.Tests.PractitionerTests
                 };
 
             //Act
-            using (_context = new AppDbContext(_options))
-            {
-                _context.Practitioners.Add(practitioner);
-                _context.SaveChanges();
-                _repository = new PractitionerRepository(_context);
+            using var context = new AppDbContext(_options);
+            _repository = new PractitionerRepository(context);
 
-                var result = _repository.Create(practitioner);
+            var result = _repository.Create(entity);
 
-                //Assert
-                Assert.That(result.Id, Is.EqualTo(1));
+            //Assert
+            Assert.That(result.Id, Is.EqualTo(1));
                 Assert.That(result.FirstName, Is.EqualTo("Abbie"));
                 Assert.That(result.LastName, Is.EqualTo("Knowles"));
             }
-        }
-
+        
         [Test]
         public void GivenAnAccountExists_DeletePractitionerRecordById()
         {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PatientWarningApp.Data.Migrations
+namespace PatientWarningApp.Api.Migrations
 {
     public partial class DbInit : Migration
     {
@@ -14,7 +14,7 @@ namespace PatientWarningApp.Data.Migrations
                 name: "MediaEntity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    MediaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Genre = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -23,7 +23,34 @@ namespace PatientWarningApp.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Media", x => x.Id);
+                    table.PrimaryKey("PK_Media", x => x.MediaId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "MedicalRecords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    StartDate = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SeizureTypes = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SeizureFrequencies = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SeizureTimes = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SeizureTriggers = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SideEffects = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Notes = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicalRecords", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -39,6 +66,7 @@ namespace PatientWarningApp.Data.Migrations
                     Title = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(30)", nullable: false),
                     DOB = table.Column<string>(type: "nvarchar(10)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
                     MobileNumber = table.Column<string>(type: "nvarchar(13)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Postcode = table.Column<string>(type: "nvarchar(10)", nullable: false)
@@ -79,6 +107,7 @@ namespace PatientWarningApp.Data.Migrations
                     Title = table.Column<string>(type: "nvarchar(20)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(30)", nullable: false),
                     DOB = table.Column<string>(type: "nvarchar(10)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
                     MobileNumber = table.Column<string>(type: "nvarchar(13)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Postcode = table.Column<string>(type: "nvarchar(10)", nullable: false)
@@ -114,6 +143,7 @@ namespace PatientWarningApp.Data.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     PatientId = table.Column<int>(type: "int", nullable: false),
                     PractitionerAccountId = table.Column<int>(type: "int", nullable: false),
+                    PractitionerAccountEntityPractitionerAccountId = table.Column<int>(type: "int", nullable: true),
                     Id = table.Column<int>(type: "int", nullable: false),
                     IsAdmin = table.Column<sbyte>(type: "tinyint", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -124,18 +154,18 @@ namespace PatientWarningApp.Data.Migrations
                 {
                     table.PrimaryKey("PK_PatientAccounts", x => x.PatientAccountId);
                     table.ForeignKey(
-                        name: "FK_PatientAccounts_PractitionerAccounts_PractitionerAccountId",
-                        column: x => x.PractitionerAccountId,
+                        name: "FK_PatientAccounts_PractitionerAccounts_PractitionerAccountEnti~",
+                        column: x => x.PractitionerAccountEntityPractitionerAccountId,
                         principalTable: "PractitionerAccounts",
                         principalColumn: "PractitionerAccountId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PatientAccounts_PractitionerAccountId",
+                name: "IX_PatientAccounts_PractitionerAccountEntityPractitionerAccount~",
                 table: "PatientAccounts",
-                column: "PractitionerAccountId");
+                column: "PractitionerAccountEntityPractitionerAccountId");
 
             migrationBuilder.CreateIndex(
                 name: "Idx_FirstName",
@@ -152,6 +182,9 @@ namespace PatientWarningApp.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "MediaEntity");
+
+            migrationBuilder.DropTable(
+                name: "MedicalRecords");
 
             migrationBuilder.DropTable(
                 name: "PatientAccounts");

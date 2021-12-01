@@ -13,6 +13,7 @@ namespace PatientWarningApp.Api.Practitioner
             LastName = model.LastName,
             Gender = model.Gender,
             DOB = model.DOB,
+            Age = model.Age,
             MobileNumber = model.MobileNumber,
             Address= model.Address,
             Postcode = model.Postcode
@@ -26,6 +27,7 @@ namespace PatientWarningApp.Api.Practitioner
             LastName = entity.LastName,
             Gender = entity.Gender,
             DOB = entity.DOB,
+            Age = entity.Age,
             MobileNumber = entity.MobileNumber,
             Address = entity.Address,
             Postcode = entity.Postcode

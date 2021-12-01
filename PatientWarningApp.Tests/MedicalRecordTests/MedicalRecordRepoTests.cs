@@ -43,12 +43,10 @@ namespace PatientWarningApp.Tests.MedicalRecordTests
                 Notes= "Badly impacting mental health"
                 };
 
-            using var context = _context = new AppDbContext(_options);
-            _context.MedicalRecords.Add(entity);
-            _context.SaveChanges();
-            _repository = new MedicalRecordRepository(_context);
-            
             //Act
+            using var context = new AppDbContext(_options);
+            _repository = new MedicalRecordRepository(context);
+
             var result = _repository.Create(entity);
 
             //Assert

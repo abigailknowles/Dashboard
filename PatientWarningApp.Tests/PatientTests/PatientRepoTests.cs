@@ -44,9 +44,7 @@ namespace PatientWarningApp.Tests.PatientTests
             };
 
             //Act
-            using var context = _context = new AppDbContext(_options);
-            context.Patients.Add(entity);
-            context.SaveChanges();
+            using var context = new AppDbContext(_options);
             _repository = new PatientRepository(context);
 
             var result = _repository.Create(entity);

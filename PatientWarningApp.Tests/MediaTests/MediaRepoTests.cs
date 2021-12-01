@@ -33,23 +33,21 @@ namespace PatientWarningApp.Tests.MediaTests
         {
             //Arrange
             var entity = new MediaEntity() { 
-                MediaId = 1,
+                MediaId = 11,
                 Title = "Shrek",
                 Genre = "Family",
                 Director="JK Rowling",
                 ReleaseDate="08/08/2000"
             };
 
-            using var context = _context = new AppDbContext(_options);
-            _context.Media.Add(entity);
-            _context.SaveChanges();
-            _repository = new MediaRepository(_context);
-
             //Act
+            using var context = new AppDbContext(_options);
+            _repository = new MediaRepository(context);
+
             var result = _repository.Create(entity);
 
             //Assert
-            Assert.That(result.MediaId, Is.EqualTo(1));
+            Assert.That(result.MediaId, Is.EqualTo(11));
             Assert.That(result.Title, Is.EqualTo("Shrek"));
         }
 
