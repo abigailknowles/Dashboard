@@ -1,6 +1,6 @@
 ﻿namespace PatientWarningApp.Api.Shared.Entities
 {
-    public class Account
+    public abstract class Account
     {
         public int Id { get; set; }
         public bool IsAdmin { get; set; }

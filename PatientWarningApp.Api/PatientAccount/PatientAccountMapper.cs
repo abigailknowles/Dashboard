@@ -9,6 +9,7 @@ namespace PatientWarningApp.Api.PatientAccount
         {
             PatientAccountId = model.PatientAccountId,
             PractitionerAccountId = model.PractitionerAccountId,
+            PatientId = model.PatientId,
             Email = model.Email,
             Password = model.Password,
             Username = model.Username
@@ -18,6 +19,7 @@ namespace PatientWarningApp.Api.PatientAccount
         {
             PatientAccountId = entity.PatientAccountId,
             PractitionerAccountId = entity.PractitionerAccountId,
+            PatientId = entity.PatientId,
             Email = entity.Email,
             Password = entity.Password,
             Username = entity.Username

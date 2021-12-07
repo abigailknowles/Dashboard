@@ -7,7 +7,7 @@ namespace PatientWarningApp.Api.Media
     {
         public static MediaEntity ToEntity(this MediaModel model) => (model == null) ? null : new MediaEntity
         {
-            MediaId = model.MediaId,
+            Id = model.Id,
             Title = model.Title,
             Genre  = model.Genre,
             ReleaseDate = model.ReleaseDate,
@@ -16,7 +16,7 @@ namespace PatientWarningApp.Api.Media
 
         public static MediaModel ToModel(this MediaEntity entity) => (entity == null) ? null : new MediaModel
         {
-            MediaId = entity.MediaId,
+            Id = entity.Id,
             Title = entity.Title,
             Genre = entity.Genre,
             ReleaseDate = entity.ReleaseDate,

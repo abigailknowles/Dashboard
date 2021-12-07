@@ -20,8 +20,6 @@ namespace PatientWarningApp.Api
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
@@ -36,7 +34,7 @@ namespace PatientWarningApp.Api
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:3000", "https://localhost:3001", "http://172.16.15.186:19001")
+                                      builder.WithOrigins("http://localhost:3000", "https://localhost:3001", "http://172.16.15.186:19001", "http://172.16.15.186:19001", "http://localhost:19006", "http://172.16.12.20:19006", "http://10.0.2.2:19006")//add machine IP here when at uni demo-ing
                                       .AllowAnyHeader()
                                       .AllowAnyMethod();
                                   });

@@ -28,10 +28,8 @@ namespace PatientWarningApp.Api.Shared.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.SetEntityMappings();
-           /* modelBuilder.SeedPatientAccounts();
-            modelBuilder.SeedPractitionerAccounts();
-            modelBuilder.SeedPractitioners();*/
-
+           modelBuilder.SeedPatientAccounts();
+           modelBuilder.SeedPractitionerAccounts();
         }
     }
 }

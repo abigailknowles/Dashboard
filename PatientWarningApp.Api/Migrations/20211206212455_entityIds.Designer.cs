@@ -10,8 +10,8 @@ using PatientWarningApp.Api.Shared.Contexts;
 namespace PatientWarningApp.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211201134030_Db-Init")]
-    partial class DbInit
+    [Migration("20211206212455_entityIds")]
+    partial class entityIds
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace PatientWarningApp.Api.Migrations
 
             modelBuilder.Entity("PatientWarningApp.Api.Media.Entities.MediaEntity", b =>
                 {
-                    b.Property<int>("MediaId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
@@ -43,10 +43,10 @@ namespace PatientWarningApp.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("MediaId")
+                    b.HasKey("Id")
                         .HasName("PK_Media");
 
-                    b.ToTable("MediaEntity");
+                    b.ToTable("Media");
                 });
 
             modelBuilder.Entity("PatientWarningApp.Api.MedicalRecords.Entities.MedicalRecordEntity", b =>
@@ -172,6 +172,30 @@ namespace PatientWarningApp.Api.Migrations
                     b.HasIndex("PractitionerAccountEntityPractitionerAccountId");
 
                     b.ToTable("PatientAccounts");
+
+                    b.HasData(
+                        new
+                        {
+                            PatientAccountId = 1,
+                            Email = "abigailknowles@patientportal.com",
+                            Id = 0,
+                            IsAdmin = (sbyte)0,
+                            Password = "password",
+                            PatientId = 0,
+                            PractitionerAccountId = 0,
+                            Username = "abigailknowles01"
+                        },
+                        new
+                        {
+                            PatientAccountId = 2,
+                            Email = "bethanyknowles@patientportal.com",
+                            Id = 0,
+                            IsAdmin = (sbyte)0,
+                            Password = "password",
+                            PatientId = 0,
+                            PractitionerAccountId = 0,
+                            Username = "bethanyknowles"
+                        });
                 });
 
             modelBuilder.Entity("PatientWarningApp.Api.Practitioner.Entities.PractitionerEntity", b =>
@@ -252,6 +276,9 @@ namespace PatientWarningApp.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("PractitionerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
@@ -260,6 +287,18 @@ namespace PatientWarningApp.Api.Migrations
                         .HasName("PK_PractitionerAccounts");
 
                     b.ToTable("PractitionerAccounts");
+
+                    b.HasData(
+                        new
+                        {
+                            PractitionerAccountId = 1,
+                            Email = "nathanknowles@patientportal.com",
+                            Id = 0,
+                            IsAdmin = (sbyte)1,
+                            Password = "password",
+                            PractitionerId = 0,
+                            Username = "nathanknowles"
+                        });
                 });
 
             modelBuilder.Entity("PatientWarningApp.Api.ReviewedMedia.Entities.ReviewedMediaEntity", b =>
@@ -287,7 +326,7 @@ namespace PatientWarningApp.Api.Migrations
                     b.HasKey("Id")
                         .HasName("PK_ReviewedMedia");
 
-                    b.ToTable("ReviewedMediaEntity");
+                    b.ToTable("ReviewedMedia");
                 });
 
             modelBuilder.Entity("PatientWarningApp.Api.PatientAccount.Entities.PatientAccountEntity", b =>

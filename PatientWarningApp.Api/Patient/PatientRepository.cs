@@ -44,7 +44,7 @@ namespace PatientWarningApp.Api.Patient
 
         public IQueryable<PatientEntity> ReadAll()
         {
-            throw new System.NotImplementedException();
+            return _context.Patients.AsQueryable();
         }
         
     }

@@ -5,5 +5,6 @@ namespace PatientWarningApp.Api.PatientAccount.Interfaces
 {
     public interface IPatientAccountRepository : Repository<PatientAccountEntity>
     {
+        PatientAccountEntity ReadByUsernameAndPassword(PatientAccountEntity patientAccountEntity);
     }
 }

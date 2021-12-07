@@ -6,6 +6,7 @@ using PatientWarningApp.Api.PractitionerAccount.Models;
 namespace PatientWarningApp.Api.Interactors
 {
     //TODO: Needs extending to include all use cases
+    //TODO: Add Interactors for Patients
     public class PractitionerInteractor : IPractitionerInteractor
     {
         private readonly IPractitionerAccountService _practitionerService;
@@ -34,7 +35,6 @@ namespace PatientWarningApp.Api.Interactors
                 _patientService.Update(account);
             });
 
-            //Ensure we have updated the database by clearing the list and repopulating with fresh data
             practitionerAccountModel.PatientAccounts = null;
             practitionerAccountModel.PatientAccounts = _patientService.ReadAll().Where(o => o.PatientAccountId == practitionerAccountModel.PractitionerAccountId).ToList();
             return practitionerAccountModel;

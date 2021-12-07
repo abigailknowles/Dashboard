@@ -10,5 +10,6 @@ namespace PatientWarningApp.Api.PatientAccount.Interfaces
         PatientAccountModel Read(int id);
         PatientAccountModel Update(PatientAccountModel model);
         List<PatientAccountModel> ReadAll();
+        PatientAccountModel ReadByUsernameAndPassword(PatientAccountModel account);
     }
 }

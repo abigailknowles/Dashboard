@@ -9,7 +9,7 @@ namespace PatientWarningApp.Tests.PractitionerAccountTests
 {
     public class LoginControllerTests
     {
-        private LoginController _loginController;
+        private PractitionerAuthController _loginController;
 
         [SetUp]
         public void Setup()
@@ -23,7 +23,7 @@ namespace PatientWarningApp.Tests.PractitionerAccountTests
             var service = new Mock<IPractitionerAccountService>();
             service.Setup(o => o.ReadByUsernameAndPassword(It.IsAny<PractitionerAccountModel>())).Returns(new PractitionerAccountModel() { Id=1, Username = "username", Password = "password" });
             var accountModel = new PractitionerAccountModel() { Username = "username", Password = "password" };
-            _loginController = new LoginController(service.Object);
+            _loginController = new PractitionerAuthController(service.Object);
             //Act
             var result = _loginController.Login(accountModel);
 

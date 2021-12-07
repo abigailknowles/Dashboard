@@ -46,6 +46,9 @@ namespace PatientWarningApp.Api.PatientAccount
         {
             return _context.PatientAccounts.AsQueryable();
         }
-
+        public PatientAccountEntity ReadByUsernameAndPassword(PatientAccountEntity entity)
+        {
+            return _context.PatientAccounts.FirstOrDefault(o => o.Username == entity.Username && o.Password == entity.Password);
+        }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PatientWarningApp.Api.Shared.Contexts;
 
 namespace PatientWarningApp.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211206165410_dbinit")]
+    partial class dbinit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -170,30 +172,6 @@ namespace PatientWarningApp.Api.Migrations
                     b.HasIndex("PractitionerAccountEntityPractitionerAccountId");
 
                     b.ToTable("PatientAccounts");
-
-                    b.HasData(
-                        new
-                        {
-                            PatientAccountId = 1,
-                            Email = "abigailknowles@patientportal.com",
-                            Id = 0,
-                            IsAdmin = (sbyte)0,
-                            Password = "password",
-                            PatientId = 0,
-                            PractitionerAccountId = 0,
-                            Username = "abigailknowles01"
-                        },
-                        new
-                        {
-                            PatientAccountId = 2,
-                            Email = "bethanyknowles@patientportal.com",
-                            Id = 0,
-                            IsAdmin = (sbyte)0,
-                            Password = "password",
-                            PatientId = 0,
-                            PractitionerAccountId = 0,
-                            Username = "bethanyknowles"
-                        });
                 });
 
             modelBuilder.Entity("PatientWarningApp.Api.Practitioner.Entities.PractitionerEntity", b =>
@@ -274,9 +252,6 @@ namespace PatientWarningApp.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PractitionerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)");
@@ -285,18 +260,6 @@ namespace PatientWarningApp.Api.Migrations
                         .HasName("PK_PractitionerAccounts");
 
                     b.ToTable("PractitionerAccounts");
-
-                    b.HasData(
-                        new
-                        {
-                            PractitionerAccountId = 1,
-                            Email = "nathanknowles@patientportal.com",
-                            Id = 0,
-                            IsAdmin = (sbyte)1,
-                            Password = "password",
-                            PractitionerId = 0,
-                            Username = "nathanknowles"
-                        });
                 });
 
             modelBuilder.Entity("PatientWarningApp.Api.ReviewedMedia.Entities.ReviewedMediaEntity", b =>

@@ -10,94 +10,44 @@ namespace PatientWarningApp.Api.Shared.Extensions
 {
     public static class ModelBuilderExtension 
     {
-     /*   public static void SeedPatientAccounts(this ModelBuilder modelBuilder)
+        public static void SeedPatientAccounts(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PatientAccountEntity>().HasData(
                 new PatientAccountEntity
                 {
-                    MediaId = 1,
-                    PatientAccountId = 2,
-                    PractitionerAccountId = 1,
-                    Email = "joebanks@patientportal.com",
+                    PatientAccountId = 1,
+                    Email = "abigailknowles@patientportal.com",
                     IsAdmin = false,
                     Password = "password",
-                    Username = "joebanks"
+                    Username = "abigailknowles01"
                 }
             );
 
             modelBuilder.Entity<PatientAccountEntity>().HasData(
                 new PatientAccountEntity
                 {
-                    MediaId = 2,
                     PatientAccountId = 2,
-                    Email = "islamclucas@patientportal.com",
+                    Email = "bethanyknowles@patientportal.com",
                     IsAdmin = false,
                     Password = "password",
-                    Username = "islamclucas"
+                    Username = "bethanyknowles"
                 }
             );
         }
 
-        public static void SeedPractitionerAccounts(this ModelBuilder modelBuilder) {
+        public static void SeedPractitionerAccounts(this ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<PractitionerAccountEntity>().HasData(
                 new PractitionerAccountEntity
                 {
-                    MediaId = 1,
                     PractitionerAccountId = 1,
-                    Username = "abigailknowles",
+                    Username = "nathanknowles",
                     Password = "password",
                     IsAdmin = true,
-                    Email = "abigailknowles@patientportal.com"
-                }
-            );
-            modelBuilder.Entity<PractitionerAccountEntity>().HasData(
-               new PractitionerAccountEntity
-               {
-                   MediaId = 1,
-                    PractitionerAccountId = 1,
-                    Username = "janedoe",
-                    Password = "password",
-                    IsAdmin = true,
-                    Email = "janedoe@patientportal.com"
+                    Email = "nathanknowles@patientportal.com",
                 }
             );
         }
-
-        public static void SeedPractitioners(this ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<PractitionerEntity>().HasData(
-                new PractitionerEntity
-                {
-                    MediaId = 1,
-                    PractitionerId = 1,
-                    FirstName = "Abigail",
-                    LastName = "Knowles",
-                    Gender = "Female",
-                    DOB = "08/08/2000",
-                    MobileNumber = "1234567890",
-                    Title = "Miss"
-                }
-            );
-        }
-
-
-        public static void SeedPatients(this ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<PatientEntity>().HasData(
-                new PatientEntity
-                {
-                    MediaId = 1,
-                    PatientId = 1,
-                    FirstName = "Abigail",
-                    LastName = "Knowles",
-                    Gender = "Female",
-                    DOB = "08/08/2000",
-                    MobileNumber = "1234567890",
-                    Title = "Miss"
-                }
-            );
-        }
-*/
         public static void SetEntityMappings(this ModelBuilder modelBuilder)
         {
             // Map entities to tables  
@@ -105,19 +55,16 @@ namespace PatientWarningApp.Api.Shared.Extensions
             modelBuilder.Entity<PatientAccountEntity>().ToTable("PatientAccounts");
             modelBuilder.Entity<PractitionerEntity>().ToTable("Practitioners");
             modelBuilder.Entity<PatientEntity>().ToTable("Patients");
-            modelBuilder.Entity<MediaEntity>().ToTable("MediaEntity");
-            modelBuilder.Entity<ReviewedMediaEntity>().ToTable("ReviewedMediaEntity");
+            modelBuilder.Entity<MediaEntity>().ToTable("Media");
+            modelBuilder.Entity<ReviewedMediaEntity>().ToTable("ReviewedMedia");
 
             // Configure Primary Keys  
             modelBuilder.Entity<PractitionerAccountEntity>().HasKey(ug => ug.PractitionerAccountId).HasName("PK_PractitionerAccounts");
             modelBuilder.Entity<PatientAccountEntity>().HasKey(ug => ug.PatientAccountId).HasName("PK_PatientAccounts");
             modelBuilder.Entity<PractitionerEntity>().HasKey(ug => ug.PractitionerId).HasName("PK_Practitioners");
             modelBuilder.Entity<PatientEntity>().HasKey(ug => ug.PatientId).HasName("PK_Patients");
-            modelBuilder.Entity<MediaEntity>().HasKey(ug => ug.MediaId).HasName("PK_Media");
+            modelBuilder.Entity<MediaEntity>().HasKey(ug => ug.Id).HasName("PK_Media");
             modelBuilder.Entity<ReviewedMediaEntity>().HasKey(ug => ug.Id).HasName("PK_ReviewedMedia");
-
-            // Configure Forgien Keys
-
 
             // Configure indexes 
             modelBuilder.Entity<PractitionerEntity>().HasIndex(p => p.FirstName).HasDatabaseName("Idx_FirstName");
@@ -125,6 +72,7 @@ namespace PatientWarningApp.Api.Shared.Extensions
 
             // Configure columns  
             modelBuilder.Entity<PractitionerAccountEntity>().Property(ug => ug.PractitionerAccountId).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+            modelBuilder.Entity<PractitionerAccountEntity>().Property(ug => ug.PractitionerId).HasColumnType("int");
             modelBuilder.Entity<PractitionerAccountEntity>().Property(ug => ug.Email).HasColumnType("nvarchar(255)").IsRequired();
             modelBuilder.Entity<PractitionerAccountEntity>().Property(ug => ug.Password).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PractitionerAccountEntity>().Property(ug => ug.Username).HasColumnType("nvarchar(100)").IsRequired();
@@ -135,6 +83,7 @@ namespace PatientWarningApp.Api.Shared.Extensions
             modelBuilder.Entity<PatientAccountEntity>().Property(ug => ug.Username).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PatientAccountEntity>().Property(ug => ug.IsAdmin).HasColumnType("tinyint").IsRequired();
             modelBuilder.Entity<PatientAccountEntity>().Property(ug => ug.PatientAccountId).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+            modelBuilder.Entity<PatientAccountEntity>().Property(ug => ug.PatientId).HasColumnType("int");
 
             modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.PractitionerId).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<PractitionerEntity>().Property(ug => ug.Title).HasColumnType("nvarchar(20)").IsRequired();
@@ -158,7 +107,7 @@ namespace PatientWarningApp.Api.Shared.Extensions
             modelBuilder.Entity<PatientEntity>().Property(ug => ug.Address).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<PatientEntity>().Property(ug => ug.Postcode).HasColumnType("nvarchar(10)").IsRequired();
 
-            modelBuilder.Entity<MediaEntity>().Property(ug => ug.MediaId).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+            modelBuilder.Entity<MediaEntity>().Property(ug => ug.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
             modelBuilder.Entity<MediaEntity>().Property(ug => ug.Title).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<MediaEntity>().Property(ug => ug.Genre).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<MediaEntity>().Property(ug => ug.Director).HasColumnType("nvarchar(100)").IsRequired();

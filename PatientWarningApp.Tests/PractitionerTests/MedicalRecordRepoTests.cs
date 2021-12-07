@@ -15,7 +15,7 @@ namespace PatientWarningApp.Tests.DataTests
         public void Setup()
         {
             _options = new DbContextOptionsBuilder<AppDbContext>()
-        .UseInMemoryDatabase(databaseName: "PatientAccountListDatabase")
+        .UseInMemoryDatabase(databaseName: "MedicalRecordListDatabase")
         .Options;
 
             // Insert seed data into the database using one instance of the context
@@ -61,7 +61,7 @@ namespace PatientWarningApp.Tests.DataTests
         public void GivenMedicalRecordExists_DeleteMedicalRecordById()
         {
             //Arrange
-            var entity = new MedicalRecordEntity() { Id = 2 };
+            var entity = new MedicalRecordEntity() { Id = 1 };
 
             //Act
             using var context = new AppDbContext(_options);
@@ -71,40 +71,40 @@ namespace PatientWarningApp.Tests.DataTests
             var readResult = _medicalRecordRepository.Read(entity.Id);
 
             //Assert
-            Assert.That(result.Id, Is.EqualTo(2));
+            Assert.That(result.Id, Is.EqualTo(1));
             Assert.That(readResult, Is.Null);
     }
         
         [Test]
         public void GivenMedicalRecordExists_ReadMedicalRecordById()
         {
-        //Arrange
-        var entity = new MedicalRecordEntity() { Id = 2 };
-
-        //Act
-        using var context = new AppDbContext(_options);
-        _medicalRecordRepository = new MedicalRecordRepository(context);
-
-        var readResult = _medicalRecordRepository.Read(entity.Id);
-
-        //Assert
-        Assert.That(readResult.Id, Is.EqualTo(2));
-    }
-        
-        [Test]
-        public void GivenMedicalRecordExists_UpdateMedicalRecord()
-        {
             //Arrange
-            var entity = new MedicalRecordEntity() { Id = 2, StartDate = "08/08/2000", Notes="Effecting mental health", SideEffects="Headaches", SeizureFrequencies="Twice a day", SeizureTimes="In the evening", SeizureTriggers="Flashing lights", SeizureTypes="Fits" };
+            var entityRead = new MedicalRecordEntity() { Id = 1 };
 
             //Act
             using var context = new AppDbContext(_options);
             _medicalRecordRepository = new MedicalRecordRepository(context);
 
-            var readResult = _medicalRecordRepository.Update(entity);
+            var readResult = _medicalRecordRepository.Read(entityRead.Id);
 
             //Assert
-            Assert.That(readResult.Id, Is.EqualTo(2));
+            Assert.That(readResult.Id, Is.EqualTo(1));
+        }
+        
+        [Test]
+        public void GivenMedicalRecordExists_UpdateMedicalRecord()
+        {
+            //Arrange
+            var updatedEntity = new MedicalRecordEntity() { Id = 1, StartDate = "08/08/2000", Notes="Effecting mental health", SideEffects="Headaches", SeizureFrequencies="Twice a day", SeizureTimes="In the evening", SeizureTriggers="Flashing lights", SeizureTypes="Fits" };
+
+            //Act
+            using var context = new AppDbContext(_options);
+            _medicalRecordRepository = new MedicalRecordRepository(context);
+
+            var readResult = _medicalRecordRepository.Update(updatedEntity);
+
+            //Assert
+            Assert.That(readResult.Id, Is.EqualTo(1));
         }
         
         }

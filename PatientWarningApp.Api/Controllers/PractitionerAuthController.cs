@@ -4,21 +4,21 @@ using PatientWarningApp.Api.PractitionerAccount.Models;
 
 namespace PatientWarningApp.Api.Controllers
 {
-    //TODO: needs to be refactored to be a general use login controller
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class PractitionerAuthController : ControllerBase
     {
         private readonly IPractitionerAccountService _practitionerAccountService;
 
-        public LoginController(IPractitionerAccountService practitionerAccountService)
+        public PractitionerAuthController(IPractitionerAccountService practitionerAccountService)
         {
             _practitionerAccountService = practitionerAccountService;
         }
 
-        [HttpPost]
+        [HttpPost("PractitionerLogin")]
         public ActionResult<PractitionerAccountModel> Login(PractitionerAccountModel account)
         {
+            // check request is valid
             if (!ModelState.IsValid)
             {
                 return BadRequest();

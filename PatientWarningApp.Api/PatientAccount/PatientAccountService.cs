@@ -42,5 +42,11 @@ namespace PatientWarningApp.Api.PatientAccount
         {
             return _patientAccountRepository.ReadAll().Select(o => o.ToModel()).ToList();
         }
+
+        public PatientAccountModel ReadByUsernameAndPassword(PatientAccountModel model)
+        {
+            var result = _patientAccountRepository.ReadByUsernameAndPassword(model.ToEntity());
+            return result.ToModel();
+        }
     }
 }

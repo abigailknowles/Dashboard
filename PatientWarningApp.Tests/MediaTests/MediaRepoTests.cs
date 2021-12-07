@@ -32,8 +32,8 @@ namespace PatientWarningApp.Tests.MediaTests
         public void CreateMediaRecord()
         {
             //Arrange
-            var entity = new MediaEntity() { 
-                MediaId = 11,
+            var entity = new MediaEntity() {
+                Id = 11,
                 Title = "Shrek",
                 Genre = "Family",
                 Director="JK Rowling",
@@ -47,7 +47,7 @@ namespace PatientWarningApp.Tests.MediaTests
             var result = _repository.Create(entity);
 
             //Assert
-            Assert.That(result.MediaId, Is.EqualTo(11));
+            Assert.That(result.Id, Is.EqualTo(11));
             Assert.That(result.Title, Is.EqualTo("Shrek"));
         }
 
@@ -55,7 +55,7 @@ namespace PatientWarningApp.Tests.MediaTests
         public void DeleteMediaRecordById()
         {
             //Arrange
-            var entity = new MediaEntity() { MediaId = 2 };
+            var entity = new MediaEntity() { Id = 2 };
             using var context = _context = new AppDbContext(_options);
             _context.Media.Add(entity);
             _context.SaveChanges();
@@ -63,10 +63,10 @@ namespace PatientWarningApp.Tests.MediaTests
 
             //Act
             var result = _repository.Delete(entity);
-            var readResult = _repository.Read(entity.MediaId);
+            var readResult = _repository.Read(entity.Id);
 
             //Assert
-            Assert.That(result.MediaId, Is.EqualTo(2));
+            Assert.That(result.Id, Is.EqualTo(2));
             Assert.That(readResult, Is.Null);
         }
 
@@ -74,17 +74,17 @@ namespace PatientWarningApp.Tests.MediaTests
         public void ReadMediaRecordById()
         {
             //Arrange
-            var entity = new MediaEntity{ MediaId = 5 };
+            var entity = new MediaEntity{ Id = 5 };
             using var context = new AppDbContext(_options);
             context.Media.Add(entity);
             context.SaveChanges();
             var mediaRepository = new MediaRepository(context);
             
             //Act
-            var readResult = mediaRepository.Read(entity.MediaId);
+            var readResult = mediaRepository.Read(entity.Id);
 
             //Assert
-            Assert.That(readResult.MediaId, Is.EqualTo(5));
+            Assert.That(readResult.Id, Is.EqualTo(5));
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace PatientWarningApp.Tests.MediaTests
             //Arrange
             var entity = new MediaEntity()
             {
-                MediaId = 7,
+                Id = 7,
                 Title = "Shrek",
                 Genre = "Family",
                 Director = "JK Rowling",
@@ -109,9 +109,9 @@ namespace PatientWarningApp.Tests.MediaTests
 
             //Act
             mediaRepository.Update(entity);
-            var result = mediaRepository.Read(entity.MediaId);
+            var result = mediaRepository.Read(entity.Id);
             //Assert
-            Assert.That(result.MediaId, Is.EqualTo(7));
+            Assert.That(result.Id, Is.EqualTo(7));
             Assert.That(result.Title, Is.EqualTo("Shrek 2"));
         }
     }

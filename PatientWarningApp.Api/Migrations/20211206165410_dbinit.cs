@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PatientWarningApp.Api.Migrations
 {
-    public partial class DbInit : Migration
+    public partial class dbinit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,10 +11,10 @@ namespace PatientWarningApp.Api.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "MediaEntity",
+                name: "Media",
                 columns: table => new
                 {
-                    MediaId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Genre = table.Column<string>(type: "nvarchar(100)", nullable: false),
@@ -23,7 +23,7 @@ namespace PatientWarningApp.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Media", x => x.MediaId);
+                    table.PrimaryKey("PK_Media", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -119,7 +119,7 @@ namespace PatientWarningApp.Api.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ReviewedMediaEntity",
+                name: "ReviewedMedia",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -181,7 +181,7 @@ namespace PatientWarningApp.Api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MediaEntity");
+                name: "Media");
 
             migrationBuilder.DropTable(
                 name: "MedicalRecords");
@@ -196,7 +196,7 @@ namespace PatientWarningApp.Api.Migrations
                 name: "Practitioners");
 
             migrationBuilder.DropTable(
-                name: "ReviewedMediaEntity");
+                name: "ReviewedMedia");
 
             migrationBuilder.DropTable(
                 name: "PractitionerAccounts");

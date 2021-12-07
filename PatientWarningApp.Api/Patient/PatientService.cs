@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 using PatientWarningApp.Api.Patient.Interfaces;
 using PatientWarningApp.Api.Patient.Models;
@@ -34,7 +34,12 @@ namespace PatientWarningApp.Api.Patient
 
         public List<PatientModel> ReadAll()
         {
-            throw new NotImplementedException();
+            var patientEntitiesList = _patientRepository.ReadAll().ToList();
+            var patientModelList = new List<PatientModel>();
+            patientEntitiesList.ForEach(item => {
+                patientModelList.Add(item.ToModel());
+            });
+            return patientModelList;
         }
 
         public PatientModel Update(PatientModel model)

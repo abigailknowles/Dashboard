@@ -20,8 +20,15 @@ namespace PatientWarningApp.Api.Patient
             _service = service;
         }
 
+        [HttpGet("/GetAll")]
+        public ActionResult<IEnumerable<PatientModel>> GetAll()
+        {
+
+            return Ok(_service.ReadAll());
+        }
+
         [HttpGet]
-        public ActionResult<IEnumerable<PatientModel>> Get(int patientId)
+        public ActionResult<IEnumerable<PatientModel>>Get(int patientId)
         {
             
             return Ok(_service.Read(patientId));
